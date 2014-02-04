@@ -136,7 +136,7 @@ if (Modernizr.touch) {
 // Using ZeroClipboard to copy glyph codes to clipboard.
 
 var client = new ZeroClipboard( $('.copy-button'), {
-  moviePath: "../assets/zeroclipboard-1.2.3/ZeroClipboard.swf"
+  moviePath: "zeroclipboard-1.2.3/ZeroClipboard.swf"
 } );
 
 client.on( "load", function(client, args) {
