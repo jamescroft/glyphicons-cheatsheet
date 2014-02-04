@@ -84,7 +84,7 @@ setTimeout(function() {
 			$(this).parent('div.row').show();
 		},
 		'onAfter': function () {	
-			scrollToHome();
+			window.scrollTo(0, 0);
     	}
 		});
 }, 100);
@@ -99,7 +99,16 @@ $('#glyph-form').bind("keyup keypress", function(e) {
   }
 });
 
-// End Search
+if($('#glyph-search').length) {
+	var $clear = $('#filter-clear');
+	$clear.click(function(e) {
+		e.preventDefault();
+		$('#glyph-search').val('').trigger('keyup').focus();
+	});
+};
+		
+		
+ //End Search
 	
 	//For each of the icons in the grid 
  
