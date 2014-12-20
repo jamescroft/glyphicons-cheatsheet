@@ -77,6 +77,7 @@ setTimeout(function() {
 	$('input#glyph-search').quicksearch('li.grid-icon', {
 		 'onBefore': function () {
         $('ul.glyphicons div.row').hide();
+        $('div.ad-break').hide();
 		$('li.grid-icon').appendTo('#first-row');
     },
 		'show': function () {
