@@ -8,14 +8,14 @@
    Contribute to or fork this project.  
  */
 
-    #home{opacity: 0;} 
-	#about{opacity: 0;}
+    #home{opacity: 0;}  
+	#about{opacity: 0;} 
 
 		html {
 			overflow-x: hidden; /* Prevent scroll on narrow devices */
 	}
 		body {
-			background-color: #553d7c;
+			background-color: #1fa67a;
 			color: #fff;
 			overflow-x:hidden;
 			font-family: 'Source Sans Pro', sans-serif;
@@ -62,7 +62,6 @@
 			padding-top: 0px;
 			line-height: auto;
 		}
-		
 		ul.nav ul.dropdown-menu>.active>a, ul.nav ul.dropdown-menu>.active>a:hover, ul.nav ul.dropdown-menu>.active>a:focus {
 			background-color: #ebebeb;
 			color: #696969;
@@ -83,7 +82,6 @@
 			margin: auto 20px;
 			text-align:center;
 		}
-
 		
 		.row-alt {
 			background-color:rgba(255,255,255,0.1);
@@ -97,9 +95,20 @@
 			font-family: 'Source Sans Pro', sans-serif;
 			text-transform:uppercase;
 			font-weight: bold;
-			font-size:42px;		
+			font-size: 42px;		
 			z-index: 1;
 		}
+        
+        h1.title sup {
+            font-size: 20%;
+            font-weight: normal;
+            text-transform: lowercase;
+            color: #fff;
+            position: relative;
+            top: -50px;
+            left: 8px;
+            
+        }
 		
 		.subtitle-container {
 				position:absolute;
@@ -128,25 +137,24 @@
 		.about h2 {
 			font-style:italic;
 		}
-		.glyphicons {
+		.font-awesome-icons {
 		  padding-left: 0;
 		  padding-bottom: 1px;
 		  margin-bottom: 20px;
-		  list-style: none;	 
-		  margin: 0 auto; 
+		  list-style: none;	
+		  margin: 0 auto;
 		  max-width: 1170px;
 		}
 		
-		.glyphicons li {
+		.font-awesome-icons li {
 			margin: 20px 0;
 		}
-
 			
-		.glyphicons .row > li {		  
+		.font-awesome-icons .row > li {		  
 		  padding: 20px 0 0 0;
 		  text-align: center;
 		}
-	    .glyphicon-class {
+	    .fa-class {
 		  font-size: 14px;
 		  font-family:Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
 		  line-height: 1.4;
@@ -161,31 +169,30 @@
 		#last-row {
 			min-height: 360px;
 		}
-		.glyphicons > .row li:hover {
+		.font-awesome-icons > .row li:hover {
 		  color: #fff;
 		}
 		.hover {
 		  color: #fff;
 		}
-			
-		.glyphicons .glyphicon, .glyphicons li.grid-icon > .fa {
-			font-size: 36px;
+		
+		.font-awesome-icons .glyphicon, .font-awesome-icons li.grid-icon > .fa {
+			font-size: 42px;
 			display: block;
 			text-align: center;
 			margin: 10px auto 20px auto;
 			color: #fff;
 		}
-		.btn-container .glyphicon {
+		.btn-container .fa {
 			color:#000;
 			font-size: 16px;
-			padding: 10px 0 1px 0;
 		}
 		
-		.glyphicons .glyphicon, .glyphicons li.grid-icon > .glyphicon:before {
+		.font-awesome-icons .glyphicon, .font-awesome-icons li.grid-icon > .fa:before {
 			content: ""!important;
 		}
 
-		span.glyphicon-class {
+		span.fa-class {
 			display: inline-block;			
 			width: 100%;
 			padding: 10px 15px 0;
@@ -199,6 +206,7 @@
 			text-align:center;
 			font-size:12px;
 			font-family:Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+            color:#000;
 		  } 
 		  .btn-container .btn-group .dropdown-menu {
 			  min-width:220px;
@@ -242,7 +250,7 @@
 			border-top: 1px solid #ebebeb;
 			background-color: #ebebeb;
 			font-size: 19px;
-			color: #553d7c;
+			color: #696969;
 			-webkit-text-stroke: 1px rgba(21,115,85,0.1);
 			font-family: 'Source Sans Pro', sans-serif;
 		  }
@@ -294,7 +302,7 @@
 		  .code-pink {
 			  color: #ff00ff;
 		  }
-
+		  
 		  .margin-bottom-sm {
 			  margin-bottom: 10px;
 		  }
@@ -349,7 +357,7 @@
 
 		/* Make the examples and snippets not full-width */
 		@media (min-width: 768px) {
-		  .glyphicon-class {
+		  .fa-class {
 			  font-weight:400;
 		  }
 		  
@@ -400,8 +408,8 @@
 			.navbar-nav {
 				float: right;
 			}
-			span.glyphicon-class {
-				height: 69px;
+			span.fa-class {
+				height: 65px;
 				padding: 5px 0 0 0;
 			}
 			h1.title {
@@ -418,24 +426,28 @@
 				position:relative;
 				top: -1px;
 			}
-			.glyphicons li {
+			.font-awesome-icons li {
 				width: 20%;	
+				margin: 10px 0;
+				
 			}
 
 		}
 		
 		@media screen and (min-width: 992px) {
-			.glyphicons li {
+			.font-awesome-icons li {
 				width: 10%;	
 			}
-			span.glyphicon-class {
+			span.fa-class {
 				height: 89px;
 			}
+
 		}
+		
 		
 		@media screen and (min-width: 992px) and (max-width: 1200px) {  
 			
-			.glyphicons li {
+			.font-awesome-icons li {
 				font-size: 11px;
 			}
 			code, pre {
