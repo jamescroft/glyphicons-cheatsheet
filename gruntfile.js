@@ -24,7 +24,7 @@ module.exports = function(grunt){
     uglify: {
         build: {
             files: {
-                'build/js/bootstrap-cheatsheet.min.js': ['assets/js/*.js']
+                'build/js/glyphicon-cheatsheet.min.js': ['assets/js/*.js']
             }
         }
     }, 

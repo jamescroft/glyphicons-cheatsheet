@@ -1,10 +1,11 @@
-/* Bootstrap Cheat Sheets
+/* 
+   Bootstrap Cheat Sheets
    
-   Font Awesome Cheat Sheets
+   Bootstrap 3.3.2 Glyphicons
    
    By: James Croft (@jamescroft on Twitter)
    
-   Contribute or fork this project.  
+   Contribute to or fork this project.  
  */
 
 
@@ -56,23 +57,23 @@ setTimeout(function() {
 	for (var c = 10; c <= glyphCount; c += 20) {
 		$("li.grid-icon").slice(c, c + rowSize).wrapAll("<div class='row row-alt'><div class='container'></div></div>");
 	};
-	$("ul.font-awesome-icons .row:first").attr("id", "first-row");
+	$("ul.glyphicon-icons .row:first").attr("id", "first-row");
     
 //Add 2 Adsense banners    
 
-    $("ul.font-awesome-icons .row:nth-child(3)").attr("id", "third-row");
-    $("<div class='container-wide text-center ad-break'><script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script><!-- Font-Awesome-2nd --><ins class='adsbygoogle'style='display:inline-block;width:728px;height:90px'data-ad-client='ca-pub-8168184751026221'data-ad-slot='4858614992'></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>").insertAfter("#third-row");                           
-    $("ul.font-awesome-icons .row:nth-child(6)").attr("id", "sixth-row");
-    $("<div class='container-wide text-center ad-break'><script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script><!-- Font Awesome-3rd --><ins class='adsbygoogle'style='display:inline-block;width:728px;height:90px'data-ad-client='ca-pub-8168184751026221'data-ad-slot='7532879794'></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});  </script></div>").insertAfter("#sixth-row");
+    $("ul.glyphicon-icons .row:nth-child(3)").attr("id", "third-row");
+    $("<div class='container-wide text-center ad-break'><script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script><!-- Glyphicons 2nd --><ins class='adsbygoogle' style='display:inline-block;width:728px;height:90px' data-ad-client='ca-pub-8168184751026221' data-ad-slot='1486346194'></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>").insertAfter("#third-row");                           
+    $("ul.glyphicon-icons .row:nth-child(6)").attr("id", "sixth-row");
+    $("<div class='container-wide text-center ad-break'><script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script><!-- Glyphicons 3rd --><ins class='adsbygoogle' style='display:inline-block;width:728px;height:90px' data-ad-client='ca-pub-8168184751026221' data-ad-slot='2963079391'></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>").insertAfter("#sixth-row");
     
-	$("ul.font-awesome-icons").css("max-width", "100%");
+	$("ul.glyphicon-icons").css("max-width", "100%");
 
  //Search: https://github.com/DeuxHuitHuit/quicksearch 
  //The search function needs to be timedOut so the classnames can be loaded in first
 
 	$('input#glyph-search').quicksearch('li.grid-icon', {
 		 'onBefore': function () {
-        $('ul.font-awesome-icons div.row').hide();
+        $('ul.glyphicon-icons div.row').hide();
         $('div.ad-break').hide();
 		$('li.grid-icon').addClass('temp').appendTo('#first-row');
     },
@@ -111,7 +112,7 @@ if($('#glyph-search').length) {
 $('body').scrollspy({ target: '.navbar', offset: (fixedNavHeight - 1)    });
 
 if (Modernizr.touch) {
-	 $("ul.font-awesome-icons li.grid-icon .btn-container").hide();
+	 $("ul.glyphicon-icons li.grid-icon .btn-container").hide();
 };
 
 }); //End document ready
@@ -129,7 +130,7 @@ client.on( "load", function(client, args) {
 	client.on( 'mouseover', function ( client, args ) {
 	  //Sets the value to be injected into the clipboard as the item on mouseover
 	  	
-	  glyphStore = $(this).parents("li.grid-icon").children("i.fa");
+	  glyphStore = $(this).parents("li.grid-icon").children("span.glyphicon");
 	  if ($(this).hasClass("parent-copy")) {
 		  //Copy the HTML Tag into the clipboard
 		  //Because of the unicode symbols rendered as contents in the <i> tag, a local clone must be taken and emptied to parse the correct clipboard value
