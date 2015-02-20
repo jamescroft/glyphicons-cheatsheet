@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Hello React</title>
+    <title>Glyphicon Cheatsheet in React</title>
     <script src="http://fb.me/react-0.12.2.js"></script>
     <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
@@ -9,6 +9,7 @@
     <link href="assets/css/glyphicon-cheatsheet.css" rel="stylesheet">
   </head>
   <body>
+    <button id="copy-button" data-clipboard-text="Copy Me!" title="Click to copy me.">Copy to Clipboard</button>  
     <div class="container" id="content"></div>
     <script type="text/jsx">
        
@@ -19,7 +20,7 @@
                 classString += this.props.class;
               }
             return (
-              <div className="icon text-center col-md-1">
+              <div className="icon text-center">
                 <span className={classString}></span>
                 <p><code>.{this.props.class}</code></p>
                 <Dropdown />
@@ -37,7 +38,7 @@
                 Copy <span className="caret"></span>
                 </button>
                 <ul className="dropdown-menu" role="menu">
-                <li><a href="#">HTML Tag</a></li>
+                <li><a className="html-copy-button" href="#" data-clipboard-text="Copy Me!">HTML Tag</a></li>
                 <li><a href="#">HTML Entity</a></li>
                 <li><a href="#">CSS Rule</a></li>
                 </ul>
@@ -100,6 +101,10 @@
           document.getElementById('content')
 );
     </script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>    
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
+  <script src="scripts/ZeroClipboard.min.js"></script>
+      
+  <script src="scripts/main.js"></script>  
+      
   </body>
 </html>
