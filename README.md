@@ -1,22 +1,38 @@
-###Using this cheat sheet
+# React Tutorial
 
-Go check out the [published Bootstrap 3 Glyphs cheat sheet page](http://glyphicons.bootstrapcheatsheets.com).
+This is the React comment box example from [the React tutorial](http://facebook.github.io/react/docs/tutorial.html).
 
-The [Font Awesome version of this cheat sheet](http://fontawesome.bootstrapcheatsheets.com/) is also available.
+## To use
 
-###About Bootstrap 3 Glyphs
+There are several simple server implementations included. They all serve static files from `public/` and handle requests to `comments.json` to fetch or add data. Start a server with one of the following:
 
-Glyphs are great! They're one of my favourite additions to [Bootstrap 3](http://getbootstrap.com), and are made by the very talented Jan Kovařík over at [Glyphicons](http://glyphicons.com/). I've been working with these glyphs quite a lot, so I thought I'd make a cheat sheet for myself.
+### Node
 
-###Cheat sheet?
+```sh
+npm install
+node server.js
+```
 
-Yeah! It's basically a big grid with all the glyphicons on it. It's similar to the [official Bootstrap documentation on Glyphicons](http://getbootstrap.com/components/#glyphicons), except [this cheat sheet](http://glyphicons.bootstrapcheatsheets.com) has handy-dandy copy buttons.
+### Python
 
-To use it, simply find the glyphicon you want to use on the page and click the copy button. That's it! This will add the complete HTML code for that glyphicon (span tag and all) to your clipboard, ready to paste into your web development tool of choice.
+```sh
+pip install -r requirements.txt
+python server.py
+```
 
-There are also descriptive class tags on them, so you can Ctrl/Cmd + F and find an icon by keyword.
+### Ruby
+```sh
+ruby server.rb
+```
 
-###What are Glyphicons exactly?
-[Glyphicons](http://glyphicons.com/) are basically little symbols, icons, or pictograms (whatever you prefer to call them) that you can use in a webpage, just like a font. If you're creating a site based on Bootstrap 3, [you already have access to 200 of them](http://getbootstrap.com/components/#glyphicons).
+### PHP
+```sh
+php server.php
+```
 
-Don't know how to set up Bootstrap? Go check out the [offical getting started guide](http://getbootstrap.com/getting-started/).
+### Go
+```sh
+go run server.go
+```
+
+And visit <http://localhost:3000/>. Try opening multiple tabs!
