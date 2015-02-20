@@ -14,10 +14,14 @@
        
        var Icon = React.createClass({
           render: function() {
+          var classString = 'glyphicon ';
+              if (this.props.class) {
+                classString += this.props.class;
+              }
             return (
-              <div className="icon text-center">
-                <span className={this.props.class}></span>
-                <p>{this.props.children}</p>
+              <div className="icon text-center col-md-1">
+                <span className={classString}></span>
+                <p><code>.{this.props.class}</code></p>
                 <Dropdown />
                 <hr />
               </div>
@@ -33,21 +37,21 @@
                 Copy <span className="caret"></span>
                 </button>
                 <ul className="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">HTML Tag</a></li>
+                <li><a href="#">HTML Entity</a></li>
+                <li><a href="#">CSS Rule</a></li>
                 </ul>
                 </div>
             );
           }
-        });
-        
+        });   
+      
        var IconList = React.createClass({
-          render: function() {
-            var iconNodes = this.props.data.map(function (icon) {
+          render: function() {         
+            var iconNodes = this.props.data.map(function (icon) {    
               return (
-                <Icon class={icon.class}>
-                  {icon.caption}
+                <Icon class={icon.id}>
+                  {icon.id}
                 </Icon>
               );
             });
@@ -60,45 +64,39 @@
         });
 
               
-        var Cheatsheet = React.createClass({
-        
-        loadCommentsFromServer: function() {
-            $.ajax({
-                  url: this.props.url,
-                  dataType: 'json',
-                  success: function(data) {
-                    this.setState({data: data});
-                  }.bind(this),
-                  error: function(xhr, status, err) {
-                    console.error(this.props.url, status, err.toString());
-                  }.bind(this)
-                });
+        var Cheatsheet = React.createClass({        
+            loadCommentsFromServer: function() {
+                $.ajax({
+                      url: this.props.url,
+                      dataType: 'json',
+                      success: function(data) {
+                        this.setState({data: data});
+                      }.bind(this),
+                      error: function(xhr, status, err) {
+                        console.error(this.props.url, status, err.toString());
+                      }.bind(this)
+                    });
+                  },
+              componentDidMount: function() {
+                this.loadCommentsFromServer();
+                setInterval(this.loadCommentsFromServer, this.props.pollInterval);
               },
-          componentDidMount: function() {
-            this.loadCommentsFromServer();
-            setInterval(this.loadCommentsFromServer, this.props.pollInterval);
-          },
-            
-          getInitialState: function() {
-            return {data: []};
-          },
-          render: function() {
-            return (
-              <div className="col-md-12">
-                <h1 className="text-center">Glyphicons Cheatsheet</h1>
-                <IconList data={this.state.data} />     
-              </div>
-            );
-          }
-        });
 
-var data = [
-  {class: "glyphicon glyphicon-home", caption: "Home"},
-  {class: "glyphicon glyphicon-star", caption: "Star"}
-]
+              getInitialState: function() {
+                return {data: []};
+              },
+              render: function() {
+                return (
+                  <div className="col-md-12">
+                    <h1 className="text-center">Glyphicons Cheatsheet</h1>
+                    <IconList data={this.state.data} />     
+                  </div>
+                );
+              }
+            });
 
         React.render(
-          <Cheatsheet url="icons-1-9-0-test.json" pollInterval={2000} />,
+          <Cheatsheet url="icons-1-9-0.json" pollInterval={2000} />,
           document.getElementById('content')
 );
     </script>
