@@ -6,105 +6,14 @@
     <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/glyphicon-cheatsheet.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
   </head>
-  <body>
-    <button id="copy-button" data-clipboard-text="Copy Me!" title="Click to copy me.">Copy to Clipboard</button>  
-    <div class="container" id="content"></div>
-    <script type="text/jsx">
-       
-       var Icon = React.createClass({
-          render: function() {
-          var classString = 'glyphicon ';
-              if (this.props.class) {
-                classString += this.props.class;
-              }
-            return (
-              <div className="icon text-center">
-                <span className={classString}></span>
-                <p><code>.{this.props.class}</code></p>
-                <Dropdown />
-                <hr />
-              </div>
-            );
-          }
-        });  
     
-        var Dropdown = React.createClass({
-          render: function() {
-            return (
-                <div className="btn-group">
-                <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                Copy <span className="caret"></span>
-                </button>
-                <ul className="dropdown-menu" role="menu">
-                <li><a className="html-copy-button" href="#" data-clipboard-text="Copy Me!">HTML Tag</a></li>
-                <li><a href="#">HTML Entity</a></li>
-                <li><a href="#">CSS Rule</a></li>
-                </ul>
-                </div>
-            );
-          }
-        });   
-      
-       var IconList = React.createClass({
-          render: function() {         
-            var iconNodes = this.props.data.map(function (icon) {    
-              return (
-                <Icon class={icon.id}>
-                  {icon.id}
-                </Icon>
-              );
-            });
-            return (
-              <div className="iconList">
-                {iconNodes}
-              </div>
-            );
-          }
-        });
-
-              
-        var Cheatsheet = React.createClass({        
-            loadCommentsFromServer: function() {
-                $.ajax({
-                      url: this.props.url,
-                      dataType: 'json',
-                      success: function(data) {
-                        this.setState({data: data});
-                      }.bind(this),
-                      error: function(xhr, status, err) {
-                        console.error(this.props.url, status, err.toString());
-                      }.bind(this)
-                    });
-                  },
-              componentDidMount: function() {
-                this.loadCommentsFromServer();
-                setInterval(this.loadCommentsFromServer, this.props.pollInterval);
-              },
-
-              getInitialState: function() {
-                return {data: []};
-              },
-              render: function() {
-                return (
-                  <div className="col-md-12">
-                    <h1 className="text-center">Glyphicons Cheatsheet</h1>
-                    <IconList data={this.state.data} />     
-                  </div>
-                );
-              }
-            });
-
-        React.render(
-          <Cheatsheet url="icons-1-9-0.json" pollInterval={2000} />,
-          document.getElementById('content')
-);
-    </script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
-  <script src="scripts/ZeroClipboard.min.js"></script>
-      
-  <script src="scripts/main.js"></script>  
-      
+  <body>
+    <div class="container" id="content"></div>
+    <script type="text/jsx;harmony=true" src="scripts/index.js"></script>     
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
+    <script src="scripts/ZeroClipboard.min.js"></script>      
+    <script src="scripts/main.js"></script> 
   </body>
 </html>
