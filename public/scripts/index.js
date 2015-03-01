@@ -17,9 +17,9 @@
                 Copy <span className="caret"></span>
                 </button>
                 <ul className="dropdown-menu" role="menu">
-                <li><a className="copy-button" href="#" data-clipboard-text={classHTMLcopy}><span className="glyphicon glyphicon-copy"></span> HTML Tag</a></li>
-                <li><a className="copy-button" href="#" data-clipboard-text={classUnicodeEntity}><span className="glyphicon glyphicon-screenshot"></span> HTML Entity</a></li>
-                <li><a className="copy-button" href="#" data-clipboard-text={classCssRule}><span className="glyphicon glyphicon-globe"></span> CSS Rule</a></li>
+                <li><a className="copy-button copy-html" href="#" data-clipboard-text={classHTMLcopy}><span className="glyphicon glyphicon-copy"></span> HTML Tag</a></li>
+                <li><a className="copy-button copy-unicode" href="#" data-clipboard-text={classUnicodeEntity}><span className="glyphicon glyphicon-screenshot"></span> HTML Entity</a></li>
+                <li><a className="copy-button copy-css" href="#" data-clipboard-text={classCssRule}><span className="glyphicon glyphicon-globe"></span> CSS Rule</a></li>
                 </ul>
                 </div>
                 <hr />

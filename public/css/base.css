@@ -78,7 +78,8 @@ ul {
 .icon .icon-name code {
     background-color: #6f5499;
     color: #fff;
-    font-size: 12px;
+    font-size: 12px;    
+    width: 100px;
 }
 
 .icon .display-icon, .icon .display-icon:before {
@@ -97,6 +98,17 @@ ul {
 
 .dropdown-menu li {
     margin: 2px 0;
+    width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+a.copy-button code {
+    width:140px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
 }
 
 button.icon-copy {
