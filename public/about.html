@@ -1,0 +1,221 @@
+<div className="about" id="about" style="opacity: 1;">
+    <div className="container">
+    <div className="col-md-8">
+    <h1>How to Use Bootstrap 3 Glyphicons</h1>
+  <p>Glyphicons are great! They're one of my favourite additions to native Bootstrap 3. I've been working with these glyphs quite a lot, so I thought I'd make a cheat sheet for myself.</p>
+  <h2>Cheat sheet?</h2>
+  <p>Yeah! To use this cheat sheet, simply find the glyphicon you want to use and click the copy button. This will add the complete HTML code for that glyphicon (span tag and all) to your clipboard, ready to paste into your web development tool of choice.</p>
+  <h2>What are Glyphicons?</h2>
+  <p>Glyphicons are basically little symbols, icons, or pictograms (whatever you prefer to call them) that you can use in a webpage. They're implemented in Bootstrap as an icon font — a custom font that contains these glyphs instead of letters.</p>
+  <p>If you're creating a site based on Bootstrap 3.3.2, you already have access to all 260 glyphs in the Glyphicons 1.9 set.</p> 
+  <p>Don't know how to set up Bootstrap? Go check out the offical <a href="http://getbootstrap.com/getting-started/" target="_blank">getting started guide</a>, or simply just include these two lines in your <code>&lt;head&gt;</code> tag:</p>
+      <div className="form-group"><label for="CSS">CSS</label><input type="text" value="<link href=&quot;//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;>" className="form-control"></div>
+      <div className="form-group"><label for="javascript">Javacript:</label><input type="text" value="<script src=&quot;//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js&quot;></script>" className="form-control"></div>
+       <p className="small">(Bootstrap hosting very kindly provided by <a href="http://www.bootstrapcdn.com" target="_blank">bootstrapcdn.com</a>)</p>
+    <div className="alert alert-info"><p><strong>Counterpoint</strong></p> <p>Icon fonts aren't the only way to implement icons on the web. If you're looking for a explanation of using icon fonts vs. SVG files (another possible method), I'd suggest reading this excellent post by Ian Feather: <a href="http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/"><em>Ten reasons we switched from an icon font to SVG</em>.</a></p></div> 
+  
+  <h2>Who made them?</h2>
+  <p>The glyphicons you see in Bootstrap are part of a set called <em>Glyphicons Halflings</em> and were created by the very talented Jan Kovařík over at <a href="http://glyphicons.com/" target="_blank">GLYPHICONS</a>.</p>
+  <h2>Am I allowed to use them?</h2> 
+  <p>Short answer: absolutely! Jan has kindly released them under the <a href="https://github.com/twbs/bootstrap#copyright-and-license" target="_blank">same MIT license as Bootstrap</a>. If you'd like more detail, please check out <a href="http://glyphicons.com/license/" target="_blank">Jan's licensing page</a>.</p>
+  <h2>How do they work?</h2>
+  <p>So, how do I add an icon to my webpage? Well, Glyphicons can be used on the web in one of three ways.</p>      
+<div className="panel-group" id="accordion">
+  <div className="panel panel-default">
+    <div className="panel-heading">
+      <h3 className="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          1. HTML Tag
+        </a>
+      </h3>
+    </div>
+    <div id="collapseOne" className="panel-collapse collapse in">
+      <div className="panel-body">
+      <p>You can use a simple <code>&lt;span&gt;</code> tag to place an glyphicon in your page, like this:</p>
+      <p><code>&lt;span className=<span className="code-blue">"<strong>glyphicon</strong> <strong>glyphicon-home</strong>"&gt;</span>&lt;/span&gt;</code> = <code><i className="glyphicon glyphicon-home"></i></code></p>
+      <ul>
+        <li>The first className—<strong><em>glyphicon</em></strong>—is a base className. It tells the <code>&lt;span&gt;</code> tag, "hey, heads up: this is going to be an icon."</li>
+        <li>The second className (in this example, <strong><em>glyphicon-home</em></strong>) points the <em>specific</em> icon you want to use. This one is an icon of a house!</li>
+      </ul>
+      <p>To use a HTML Tag for an icon, simply copy and paste <code>&lt;i className=<span className="code-blue">"<strong>glyphicon</strong> <strong>glyphicon-home</strong>"&gt;</span>&lt;/i&gt;</code> anywhere within the <code>&lt;body&gt;</code> of your page.</p>
+      <div className="alert alert-danger"> <strong>Warning: Don't mix glyphicons with other components</strong>
+        <p>Icon classNamees shouldn't be combined with other elements in Bootstrap. They're designed to be standalone.</p>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div className="panel panel-default">
+    <div className="panel-heading">
+      <h3 className="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          2. Unicode HTML Entity
+        </a>
+      </h3>
+    </div>
+    <div id="collapseTwo" className="panel-collapse collapse">
+      <div className="panel-body">
+      <p>This works slightly differently, by:</p>
+      <ol>
+       <li>Specifying the Glyphicon web-font in a CSS rule with <code><span className="code-pink">font-family</span></code></li>
+       <li>Using the Unicode HTML Entity to display the icon</li>
+      </ol>
+       <p>Firstly, the CSS rule. This should be placed inside a <code><span className="code-pink">&lt;style&gt;</span></code> tag, or better yet, in a seperate stylesheet:</p>
+        <pre>          <span className="code-pink">span.icon {</span> <br>
+          &nbsp;&nbsp;font-family<span className="code-pink">:</span> <span className="code-blue">'Glyphicons Halflings';</span> <br>
+          <span className="code-pink">}</span>
+        </pre> 
+      <p>Next, the HTML Entity part:</p>
+        <pre>          &lt;span className=<span className="code-blue">"<strong>icon</strong>"&gt;</span>&amp;#xf015;&lt;/span&gt;
+        </pre>  
+      <p>The CSS rule specifies that any Unicode HTML Entity <em>inside</em> a <code>&lt;span className=<span className="code-blue">"<strong>icon</strong>"&gt;</span>&lt;/span&gt;</code> tag will be rendered on the page as an icon.</p>
+        <p>The HTML entity inside the tag (in this case, <strong>&amp;#xf015;</strong>) is a string of characters that tells the web-font to display a certain icon.</p>
+        <p className="well well-lg"><strong>Note:</strong> This method may offer you more flexibility (for example, you could use a <code>&lt;div&gt;</code> or <code>&lt;li&gt;</code> tag instead).</p> 
+      </div>
+    </div>
+  </div>
+  <div className="panel panel-default">
+    <div className="panel-heading">
+      <h3 className="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          3. CSS Rule
+        </a>
+      </h3>
+    </div>
+    <div id="collapseThree" className="panel-collapse collapse">
+      <div className="panel-body">
+      <p>This method works by including the rendering of the icon before the content using the <code><span className="code-pink">:before</span></code> CSS psuedo-element.</p> 
+      <p>Firstly, the web-font is specified with <code>font-family</code>, and then the icon is specified by using the <code>content</code> property alongside a unicode hex entity (in this case, <strong>f015</strong>).</p> 
+      <p>Because the hex entity is inside a style tag, it must be prepended with an escaped backslash, making it <strong>\f015</strong>.</p> 
+      <p>This should be placed inside a <code><span className="code-pink">&lt;style&gt;</span></code> tag, or better yet, in a seperate stylesheet:</p>
+      <pre>          <span className="code-pink">span.icon:before {</span> <br>
+          &nbsp;&nbsp;font-family<span className="code-pink">:</span> <span className="code-blue">'Glyphicons Halflings';</span> <br>
+          &nbsp;&nbsp;content<span className="code-pink">:</span> <span className="code-green">"\f015"</span><span className="code-pink">;</span> <br>
+          <span className="code-pink">}</span>
+        </pre> 
+       <p>To add this icon to a page, add this HTML tag anywhere in the <code>body</code> of your page.</p> 
+       <pre>          &lt;span className=<span className="code-blue">"<strong>icon</strong>"&gt;</span>&lt;/span&gt;
+        </pre>
+       <p className="well well-lg"><strong>Note:</strong> This method is useful because it seperates the visual elements of your design—like icons—from the structural HTML, so you can add glyphicons to existing elements. Particularly useful for tasks like <a href="http://codex.wordpress.org/Theme_Development">Wordpress</a> or <a href="http://docs.moodle.org/dev/Themes">Moodle</a> theme development, for example.</p> 
+      </div>
+    </div>
+  </div>
+</div>      
+
+    
+    
+    
+    <h2>Examples</h2>
+    <p>You can use glyphicons in a variety of ways; in buttons, button groups for a toolbar, navigation or prepended form inputs. Here are a few examples of glyphicons in action:</p>
+    <h3>Buttons</h3>
+    <div className="well well-lg example">
+        <p>
+        <button type="button" className="btn btn-default btn-lg">
+            <span className="glyphicon glyphicon-star"></span> Star
+        </button>
+    	</p>
+    <pre><span className="code-yellow">&lt;button type=</span><span className="code-blue">"button"</span> <span className="code-yellow">className=</span><span className="code-blue">"btn btn-default btn-lg"</span><span className="code-yellow">&gt;</span><br>
+    &nbsp;&nbsp;&lt;span className=<span className="code-blue">"glyphicon <strong>glyphicon-star</strong>"</span>&gt;&lt;/span&gt; Star <br>
+    <span className="code-yellow">&lt;/button&gt;</span>
+    </pre>
+    </div>
+    <h3>Toolbars</h3>
+    <div className="well well-lg example">
+    <div className="btn-toolbar" role="toolbar">
+        <div className="btn-group">
+          <button type="button" className="btn btn-default"><span className="glyphicon glyphicon-align-left"></span></button>
+          <button type="button" className="btn btn-default"><span className="glyphicon glyphicon-align-center"></span></button>
+          <button type="button" className="btn btn-default"><span className="glyphicon glyphicon-align-right"></span></button>
+          <button type="button" className="btn btn-default"><span className="glyphicon glyphicon-align-justify"></span></button>
+        </div>
+      </div>
+      <pre>      
+      &lt;div className=<span className="code-blue">"btn-toolbar"</span> role=<span className="code-blue">"toolbar"</span>&gt; <br>
+        &nbsp;&nbsp;&lt;div className=<span className="code-blue">"btn-group"&gt;</span> <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-yellow">&lt;button type=</span><span className="code-blue">"button"</span> <span className="code-yellow">className=</span><span className="code-blue">"btn btn-default"</span>&gt; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span className=<span className="code-blue">"glyphicon <strong>glyphicon-align-left</strong>"</span>&gt;&lt;/span&gt; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-yellow">&lt;/button&gt;</span><br>
+         &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-yellow">&lt;button type=</span><span className="code-blue">"button"</span> <span className="code-yellow">className=</span><span className="code-blue">"btn btn-default"</span>&gt; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span className="<span className="code-blue">glyphicon <strong>glyphicon-align-center</strong>"</span>&gt;&lt;/span&gt; <br> 
+          &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-yellow">&lt;/button&gt;</span><br>
+           &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-yellow">&lt;button type=</span><span className="code-blue">"button"</span> <span className="code-yellow">className=</span><span className="code-blue">"btn btn-default"</span>&gt; <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span className=<span className="code-blue">"glyphicon <strong>glyphicon-align-right</strong>"</span>&gt; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/span&gt; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-yellow">&lt;/button&gt;</span><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-yellow">&lt;button type=</span><span className="code-blue">"button"</span> <span className="code-yellow">className=</span><span className="code-blue">"btn btn-default"</span>&gt; <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span className=<span className="code-blue">"glyphicon <strong>glyphicon-align-justify</strong>"</span>&gt; <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/span&gt; <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-yellow">&lt;/button&gt;</span><br>
+         &nbsp;&nbsp;&lt;/div&gt; <br>
+      &lt;/div&gt; <br>    
+      </pre>
+      </div>
+      <h3>Navigation</h3>
+      <div className="well well-lg example">
+          <ul className="nav nav-pills">
+              <li><a><span className="glyphicon glyphicon-home"></span> Home</a></li>
+              <li><a><span className="glyphicon glyphicon-shopping-cart"></span> Shop</a></li>
+              <li><a><span className="glyphicon glyphicon-info-sign"></span> About</a></li>
+          
+         </ul>
+        <pre>             &lt;ul className=<span className="code-blue">"nav nav-pills"</span>&gt;<br>
+                   &nbsp;&nbsp;&lt;li&gt;<br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-green">&lt;a href=</span><span className="code-blue">"index.html"</span><span className="code-green">&gt;</span><br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span className=<span className="code-blue">"glyphicon <strong>glyphicon-home</strong>"</span>&gt;&lt;/span&gt; Home<br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-green">&lt;/a&gt;</span><br>
+                   &nbsp;&nbsp;&lt;/li&gt;<br>
+                   &nbsp;&nbsp;&lt;li&gt;<br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-green">&lt;a href=</span><span className="code-blue">"shop.html"</span><span className="code-green">&gt;</span><br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span className=<span className="code-blue">"glyphicon <strong>glyphicon-shopping-cart</strong>"</span>&gt;&lt;/span&gt; Shop<br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-green">&lt;/a&gt;</span><br>
+                   &nbsp;&nbsp;&lt;/li&gt;<br>
+                   &nbsp;&nbsp;&lt;li&gt;<br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-green">&lt;a href=</span><span className="code-blue">"about.html"</span><span className="code-green">&gt;</span><br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span className=<span className="code-blue">"glyphicon <strong>glyphicon-info-sign</strong>"</span>&gt;&lt;/span&gt; About<br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;<span className="code-green">&lt;/a&gt;</span><br>
+                   &nbsp;&nbsp;&lt;/li&gt;<br>
+              &lt;/ul&gt;<br>
+      </pre>
+   </div>
+    <h3>Form Inputs</h3> 
+    <div className="well well-lg example">
+    
+        <div className="input-group input-group-lg col-md-6 margin-bottom-sm">
+          <span className="input-group-addon"><span className="glyphicon glyphicon-envelope"></span></span>
+          <input className="form-control" type="text" placeholder="Email address">
+        </div>
+        <div className="input-group input-group-lg col-md-6 margin-bottom-sm">
+          <span className="input-group-addon"><span className="glyphicon glyphicon-lock"></span></span>
+          <input className="form-control" type="password" placeholder="Password">
+        </div> 
+        
+        <pre>        	&lt;div className=<span className="code-blue">"input-group input-group-lg"</span>&gt;<br>
+          &nbsp;&nbsp;&lt;span className=<span className="code-blue">"input-group-addon"</span>&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&lt;span className=<span className="code-blue">"<strong>glyphicon</strong> <strong>glyphicon-envelope</strong>"</span>&gt;&lt;/span&gt;<br>
+          &nbsp;&nbsp;&lt;/span&gt;<br>
+          &nbsp;&nbsp;<span className="code-yellow">&lt;input className=</span><span className="code-blue">"form-control"</span> <span className="code-yellow">type=</span><span className="code-blue">"text"</span> <span className="code-yellow">placeholder=</span><span className="code-blue">"Email address"</span><span className="code-yellow">&gt;</span><br>
+        &lt;/div&gt;<br>
+        &lt;div className=<span className="code-blue">"input-group input-group-lg"</span>&gt;<br>
+          &nbsp;&nbsp;&lt;span className=<span className="code-blue">"input-group-addon"</span>&gt;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&lt;span className=<span className="code-blue">"<strong>glyphicon</strong> <strong>glyphicon-lock</strong>"</span>&gt;&lt;/span&gt;<br>
+          &nbsp;&nbsp;&lt;/span&gt;<br>
+          &nbsp;&nbsp;<span className="code-yellow">&lt;input className=</span><span className="code-blue">"form-control"</span> <span className="code-yellow">type=</span><span className="code-blue">"password"</span> <span className="code-yellow">placeholder=</span><span className="code-blue">"Password"</span><span className="code-yellow">&gt;</span><br>
+        &lt;/div&gt; <br>
+        
+        </pre>
+        
+        
+     </div>    
+      
+      
+      
+      <h2>Additional Reading</h2>
+        <p>Want more info on the Glyphicons in Bootstrap 3? Check out the <a href="http://getbootstrap.com/components/#glyphicons" target="_blank">official Bootstrap documentation</a>.</p>
+    </div>
+    <div className="col-md-4">
+    <h1>About me</h1>
+    <p><a href="http://twitter.com/jamescroft"><img src="assets/img/james.jpg" alt="James Croft" className="img-circle" width="140" height="140"></a></p>
+    <p>My name is <a href="http://twitter.com/jamescroft">James Croft</a>. I'm a web developer from Brisbane, Australia.</p>
+    <p>If you found this page useful, consider buying <a href="http://bootstrapcheatsheets.com/shop" className="muted">a Bootstrap Cheat Sheet poster</a> for your wall!</p>
+    </div>
+     </div>
+     </div>

@@ -4,7 +4,7 @@ body {
   font-size: 15px;
   line-height: 1.7;
   margin: 0;
-  padding: 30px;
+  padding: 75px;
   color: #fff;
 }
 
@@ -26,6 +26,18 @@ h1, h2, h3, h4 {
   font-weight: bold;
   margin: 0 0 15px;
   padding: 0;
+}
+
+.cheatsheet-title {
+    text-align: center;
+}
+
+.cheatsheet-version {
+    float: right;
+    font-size: 14px;
+    font-weight: normal;
+    position: relative;
+    top: 25px;
 }
 
 h1 {
@@ -97,7 +109,7 @@ ul {
 }
 
 .dropdown-menu li {
-    margin: 2px 0;
+    margin: 8px 0;
     width: 160px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -109,9 +121,83 @@ a.copy-button code {
     text-overflow: ellipsis;
     overflow: hidden;
     display: inline-block;
+    padding: 2px 4px 1px 4px;
+    font-size: 12px;
+    
 }
 
 button.icon-copy {
     font-size: 12px;
 }
 
+.ad-break {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #563d7c;
+    height: 110px;
+}
+
+.ad-break-top {
+    padding-bottom: 20px;
+    height: 110px;
+}
+
+
+
+
+.navbar {
+    font-family: Varela Round, arial, sans-serif;
+}
+.navbar-brand {
+    font-size: 11px;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-style: normal;
+    padding: 0 10px;
+}
+.navbar-form {
+    margin-right: 5px;
+    margin-top: 13px;
+}				
+.navbar ul.navbar-nav li>a {
+    font-family: Varela Round, arial, sans-serif;
+    font-size: 12px;
+    line-height: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: normal;
+    font-style: normal;
+    padding-top: 20px;
+}
+.navbar ul.navbar-nav li.nav-search {
+    width:250px;
+    margin: 12px 10px;
+}
+
+ul.nav ul.dropdown-menu li a {
+    padding-top: 0px;
+    line-height: auto;
+}
+ul.nav ul.dropdown-menu>.active>a, ul.nav ul.dropdown-menu>.active>a:hover, ul.nav ul.dropdown-menu>.active>a:focus {
+    background-color: #ebebeb;
+    color: #696969;
+}
+
+.nav-contain {
+    max-width: 1030px;
+    padding: 0 0 0 20px;
+}
+
+.about {
+    padding: 30px 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-top: 1px solid #ebebeb;
+    background-color: #ebebeb;
+    font-size: 19px;
+    color: #696969;
+    display: none;
+
+}
