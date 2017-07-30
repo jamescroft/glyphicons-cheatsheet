@@ -235,6 +235,11 @@
 			  text-overflow:ellipsis;
 		  }
 
+		.btn-container .btn-group .dropdown-menu li a span.copy-success {
+			color: #1fa67a;
+		  }
+
+
 
 		  
 		  
