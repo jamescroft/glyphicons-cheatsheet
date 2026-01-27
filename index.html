@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Cheat Sheets</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
     <style>
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -42,8 +43,20 @@
     </header>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Mode Toggle -->
+        <div class="mb-6">
+            <div class="inline-flex rounded-xl bg-slate-100 p-1">
+                <button data-mode="classes" class="mode-btn px-6 py-2.5 rounded-lg font-medium transition-all bg-purple-600 text-white shadow-md">
+                    Bootstrap Classes
+                </button>
+                <button data-mode="icons" class="mode-btn px-6 py-2.5 rounded-lg font-medium transition-all text-slate-600 hover:text-slate-900">
+                    Bootstrap Icons
+                </button>
+            </div>
+        </div>
+
         <!-- Version Selector -->
-        <div class="mb-8">
+        <div id="version-selector-container" class="mb-8">
             <label class="block text-sm font-medium text-slate-700 mb-3">Select Bootstrap Version</label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="version-selector">
                 <button data-version="5.3" class="version-btn p-4 rounded-xl border-2 transition-all font-medium bg-purple-600 text-white border-transparent shadow-lg scale-105">
@@ -82,48 +95,7 @@
                 <div class="bg-white rounded-xl shadow-sm p-4 sticky top-24">
                     <h3 class="font-semibold text-slate-900 mb-4">Categories</h3>
                     <nav class="space-y-1" id="category-nav">
-                        <button data-category="grid" class="category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all bg-purple-600 text-white shadow-md">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>
-                            </svg>
-                            <span class="font-medium">Grid System</span>
-                        </button>
-                        <button data-category="typography" class="category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"></path>
-                            </svg>
-                            <span class="font-medium">Typography</span>
-                        </button>
-                        <button data-category="components" class="category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z"></path>
-                            </svg>
-                            <span class="font-medium">Components</span>
-                        </button>
-                        <button data-category="utilities" class="category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                            </svg>
-                            <span class="font-medium">Utilities</span>
-                        </button>
-                        <button data-category="forms" class="category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                            </svg>
-                            <span class="font-medium">Forms</span>
-                        </button>
-                        <button data-category="javascript" class="category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                            <span class="font-medium">JavaScript</span>
-                        </button>
-                        <button data-category="icons" class="category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="font-medium">Bootstrap Icons</span>
-                        </button>
+                        <!-- Categories populated by JavaScript -->
                     </nav>
                 </div>
             </div>
@@ -153,6 +125,7 @@
         </div>
     </div>
 
+    <script src="data/icons.js"></script>
     <script>
         // Content data
         const contentData = {
@@ -223,19 +196,6 @@
                         { name: 'Carousel', code: '<div class="carousel slide">...</div>', description: 'Cycling slideshow component' }
                     ]
                 },
-                icons: {
-                    title: 'Bootstrap Icons',
-                    items: [
-                        { name: 'CDN Link', code: '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">', description: 'Include Bootstrap Icons via CDN' },
-                        { name: 'NPM Install', code: 'npm i bootstrap-icons', description: 'Install via npm for local projects' },
-                        { name: 'Icon Usage', code: '<i class="bi bi-heart-fill"></i>', description: 'Use icons with the bi class prefix' },
-                        { name: 'SVG Usage', code: '<svg class="bi" width="32" height="32" fill="currentColor">\n  <use xlink:href="bootstrap-icons.svg#heart-fill"/>\n</svg>', description: 'Use icons as inline SVG sprites' },
-                        { name: 'Icon Sizing', code: '<i class="bi bi-heart" style="font-size: 2rem;"></i>', description: 'Scale icons using font-size' },
-                        { name: 'Icon Colors', code: '<i class="bi bi-heart text-danger"></i>', description: 'Color icons with text utilities' },
-                        { name: 'Popular Icons', code: 'bi-heart, bi-star, bi-check, bi-x, bi-search, bi-cart, bi-person, bi-house, bi-trash, bi-gear', description: 'Common Bootstrap icon class names' },
-                        { name: 'Total Count', code: '2,000+ icons available', description: 'Free, high quality, open source icon library' }
-                    ]
-                }
             },
             '4.6': {
                 grid: {
@@ -280,47 +240,133 @@
             '2.3': 'bg-orange-600'
         };
 
+        // Sidebar category definitions
+        const classesCategories = [
+            { id: 'grid', name: 'Grid System', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>' },
+            { id: 'typography', name: 'Typography', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"></path>' },
+            { id: 'components', name: 'Components', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z"></path>' },
+            { id: 'utilities', name: 'Utilities', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>' },
+            { id: 'forms', name: 'Forms', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>' },
+            { id: 'javascript', name: 'JavaScript', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>' }
+        ];
+
+        const iconsCategories = [
+            { id: 'getting-started', name: 'Getting Started', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>' },
+            { id: 'usage', name: 'Usage', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>' },
+            { id: 'styling', name: 'Styling', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>' },
+            { id: 'examples', name: 'Examples', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>' }
+        ];
+
+        let currentMode = 'classes';
         let currentVersion = '5.3';
         let currentCategory = 'grid';
+        let searchQuery = '';
 
-        // Render content
+        // Render sidebar categories based on current mode
+        function renderSidebar() {
+            const categories = currentMode === 'icons' ? iconsCategories : classesCategories;
+            const nav = document.getElementById('category-nav');
+            const activeColor = currentMode === 'icons' ? 'bg-pink-600' : versionColors[currentVersion];
+
+            nav.innerHTML = categories.map((cat, index) => {
+                const isActive = cat.id === currentCategory;
+                const btnClass = isActive
+                    ? `category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${activeColor} text-white shadow-md`
+                    : 'category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50';
+
+                return `
+                    <button data-category="${cat.id}" class="${btnClass}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            ${cat.icon}
+                        </svg>
+                        <span class="font-medium">${cat.name}</span>
+                    </button>
+                `;
+            }).join('');
+
+            // Re-attach category click handlers
+            attachCategoryListeners();
+        }
+
+        // Render content based on current mode
         function renderContent() {
-            const content = contentData[currentVersion]?.[currentCategory] || contentData['5.3'].grid;
+            let content;
             const container = document.getElementById('content-container');
-            document.getElementById('content-title').textContent = content.title;
-            document.getElementById('version-badge').textContent = `v${currentVersion}`;
-            document.getElementById('cdn-version').textContent = currentVersion;
-            
-            const versionColor = versionColors[currentVersion];
-            document.getElementById('version-badge').className = `px-4 py-1.5 ${versionColor} text-white text-sm font-medium rounded-full`;
+            const versionBadge = document.getElementById('version-badge');
+            const cdnVersionSpan = document.getElementById('cdn-version');
+            const cdnCode = document.getElementById('cdn-code');
 
-            // Update CDN code
-            document.getElementById('cdn-code').textContent = 
+            if (currentMode === 'icons') {
+                content = iconsData[currentCategory] || iconsData['getting-started'];
+                document.getElementById('content-title').textContent = content.title;
+                versionBadge.textContent = 'All versions';
+                versionBadge.className = 'px-4 py-1.5 bg-pink-600 text-white text-sm font-medium rounded-full';
+                cdnVersionSpan.textContent = 'Icons';
+                cdnCode.textContent = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">';
+            } else {
+                content = contentData[currentVersion]?.[currentCategory] || contentData['5.3'].grid;
+                document.getElementById('content-title').textContent = content.title;
+                versionBadge.textContent = `v${currentVersion}`;
+                const versionColor = versionColors[currentVersion];
+                versionBadge.className = `px-4 py-1.5 ${versionColor} text-white text-sm font-medium rounded-full`;
+                cdnVersionSpan.textContent = currentVersion;
+                cdnCode.textContent =
 `<link href="https://cdn.jsdelivr.net/npm/bootstrap@${currentVersion}.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@${currentVersion}.0/dist/js/bootstrap.bundle.min.js"><\/script>`;
+            }
 
-            if (!content.items || content.items.length === 0) {
+            if (!content || !content.items || content.items.length === 0) {
                 container.innerHTML = `
                     <div class="text-center py-12 text-slate-500">
-                        <p>Content coming soon for this section in Bootstrap ${currentVersion}</p>
+                        <p>Content coming soon for this section</p>
                     </div>
                 `;
                 return;
             }
 
-            container.innerHTML = content.items.map((item, index) => `
-                <div class="border-2 border-slate-100 rounded-lg p-5 hover:border-purple-200 hover:shadow-md transition-all animate-slide-in">
-                    <div class="flex items-start justify-between mb-2">
-                        <h3 class="text-lg font-semibold text-slate-900">${item.name}</h3>
-                        <button data-index="${index}" class="copy-btn text-sm px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-md transition-colors">
-                            Copy
-                        </button>
+            // Special rendering for icon examples
+            if (currentMode === 'icons' && currentCategory === 'examples') {
+                // Sort icons alphabetically by name
+                const sortedItems = [...content.items].sort((a, b) => a.name.localeCompare(b.name));
+                container.innerHTML = `
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                        ${sortedItems.map((item, index) => `
+                            <div class="border-2 border-slate-100 rounded-lg p-4 hover:border-pink-200 hover:shadow-md transition-all animate-slide-in text-center flex flex-col h-full">
+                                <div class="text-4xl mb-3 text-slate-700">
+                                    <i class="bi ${item.icon}"></i>
+                                </div>
+                                <h3 class="text-sm font-semibold text-slate-900 mb-1">${item.name}</h3>
+                                <p class="text-xs text-slate-500 mb-3 flex-grow">${item.description}</p>
+                                <button data-code="${escapeHtml(item.code)}" class="copy-btn text-xs px-3 py-1.5 bg-pink-100 hover:bg-pink-200 text-pink-700 rounded-md transition-colors w-full mt-auto">
+                                    Copy
+                                </button>
+                            </div>
+                        `).join('')}
                     </div>
-                    <p class="text-sm text-slate-600 mb-3">${item.description}</p>
-                    <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto"><code class="text-sm">${escapeHtml(item.code)}</code></pre>
-                </div>
-            `).join('');
-            
+                `;
+                // Attach event listeners for sorted icon examples
+                document.querySelectorAll('.copy-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const code = this.getAttribute('data-code');
+                        copyToClipboard(code, this);
+                    });
+                });
+                return;
+            } else {
+                container.innerHTML = content.items.map((item, index) => `
+                    <div class="border-2 border-slate-100 rounded-lg p-5 hover:border-purple-200 hover:shadow-md transition-all animate-slide-in">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="text-lg font-semibold text-slate-900">${item.name}</h3>
+                            <button data-index="${index}" class="copy-btn text-sm px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-md transition-colors">
+                                Copy
+                            </button>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-3">${item.description}</p>
+                        <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto"><code class="text-sm">${escapeHtml(item.code)}</code></pre>
+                    </div>
+                `).join('');
+            }
+
             // Attach event listeners to copy buttons
             document.querySelectorAll('.copy-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -351,34 +397,221 @@
             });
         }
 
+        // Search function - returns matching items across all categories
+        function performSearch(query) {
+            const results = [];
+            const lowerQuery = query.toLowerCase();
+
+            if (currentMode === 'icons' && currentCategory === 'examples') {
+                // When on Examples category, only search within examples (icon names and descriptions)
+                const examplesCategory = iconsData['examples'];
+                examplesCategory.items.forEach(item => {
+                    if (item.name.toLowerCase().includes(lowerQuery) ||
+                        item.description.toLowerCase().includes(lowerQuery)) {
+                        results.push({ ...item, categoryId: 'examples', categoryTitle: examplesCategory.title });
+                    }
+                });
+            } else if (currentMode === 'icons') {
+                // Search through all iconsData categories
+                Object.entries(iconsData).forEach(([categoryId, category]) => {
+                    category.items.forEach(item => {
+                        if (item.name.toLowerCase().includes(lowerQuery) ||
+                            item.description.toLowerCase().includes(lowerQuery) ||
+                            item.code.toLowerCase().includes(lowerQuery)) {
+                            results.push({ ...item, categoryId, categoryTitle: category.title });
+                        }
+                    });
+                });
+            } else {
+                // Search through contentData for current version
+                const versionData = contentData[currentVersion] || {};
+                Object.entries(versionData).forEach(([categoryId, category]) => {
+                    category.items.forEach(item => {
+                        if (item.name.toLowerCase().includes(lowerQuery) ||
+                            item.description.toLowerCase().includes(lowerQuery) ||
+                            item.code.toLowerCase().includes(lowerQuery)) {
+                            results.push({ ...item, categoryId, categoryTitle: category.title });
+                        }
+                    });
+                });
+            }
+
+            return results;
+        }
+
+        // Render search results
+        function renderSearchResults(results) {
+            const container = document.getElementById('content-container');
+            document.getElementById('content-title').textContent = `Search Results (${results.length})`;
+
+            if (results.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-500">
+                        <p>No results found for "${escapeHtml(searchQuery)}"</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Check if we're in icons mode and results contain icon examples
+            const hasIconExamples = currentMode === 'icons' && results.some(item => item.icon);
+
+            if (hasIconExamples && results.every(item => item.icon)) {
+                // All results are icon examples - use grid layout
+                container.innerHTML = `
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                        ${results.map((item, index) => `
+                            <div class="border-2 border-slate-100 rounded-lg p-4 hover:border-pink-200 hover:shadow-md transition-all animate-slide-in text-center flex flex-col h-full">
+                                <div class="text-4xl mb-3 text-slate-700">
+                                    <i class="bi ${item.icon}"></i>
+                                </div>
+                                <h3 class="text-sm font-semibold text-slate-900 mb-1">${item.name}</h3>
+                                <p class="text-xs text-slate-500 mb-3 flex-grow">${item.description}</p>
+                                <button data-code="${escapeHtml(item.code)}" class="search-copy-btn text-xs px-3 py-1.5 bg-pink-100 hover:bg-pink-200 text-pink-700 rounded-md transition-colors w-full mt-auto">
+                                    Copy
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                // Mixed results or non-icon results - use list layout
+                container.innerHTML = results.map((item, index) => `
+                    <div class="border-2 border-slate-100 rounded-lg p-5 hover:border-purple-200 hover:shadow-md transition-all animate-slide-in">
+                        <div class="flex items-start justify-between mb-2">
+                            <div>
+                                ${item.icon ? `<span class="text-2xl mr-2"><i class="bi ${item.icon}"></i></span>` : ''}
+                                <h3 class="text-lg font-semibold text-slate-900 inline">${item.name}</h3>
+                                <span class="ml-2 text-xs px-2 py-0.5 bg-slate-100 text-slate-600 rounded">${item.categoryTitle}</span>
+                            </div>
+                            <button data-code="${escapeHtml(item.code)}" class="search-copy-btn text-sm px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-md transition-colors">
+                                Copy
+                            </button>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-3">${item.description}</p>
+                        <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto"><code class="text-sm">${escapeHtml(item.code)}</code></pre>
+                    </div>
+                `).join('');
+            }
+
+            // Attach event listeners to search result copy buttons
+            document.querySelectorAll('.search-copy-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const code = this.getAttribute('data-code');
+                    copyToClipboard(code, this);
+                });
+            });
+        }
+
+        // Render filtered examples (when searching within Examples category)
+        function renderFilteredExamples(results) {
+            const container = document.getElementById('content-container');
+            document.getElementById('content-title').textContent = results.length === iconsData['examples'].items.length
+                ? 'Examples'
+                : `Examples (${results.length} found)`;
+
+            if (results.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-500">
+                        <p>No icons found for "${escapeHtml(searchQuery)}"</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort results alphabetically by name
+            const sortedResults = [...results].sort((a, b) => a.name.localeCompare(b.name));
+
+            container.innerHTML = `
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                    ${sortedResults.map((item, index) => `
+                        <div class="border-2 border-slate-100 rounded-lg p-4 hover:border-pink-200 hover:shadow-md transition-all animate-slide-in text-center flex flex-col h-full">
+                            <div class="text-4xl mb-3 text-slate-700">
+                                <i class="bi ${item.icon}"></i>
+                            </div>
+                            <h3 class="text-sm font-semibold text-slate-900 mb-1">${item.name}</h3>
+                            <p class="text-xs text-slate-500 mb-3 flex-grow">${item.description}</p>
+                            <button data-code="${escapeHtml(item.code)}" class="search-copy-btn text-xs px-3 py-1.5 bg-pink-100 hover:bg-pink-200 text-pink-700 rounded-md transition-colors w-full mt-auto">
+                                Copy
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            // Attach event listeners to copy buttons
+            document.querySelectorAll('.search-copy-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const code = this.getAttribute('data-code');
+                    copyToClipboard(code, this);
+                });
+            });
+        }
+
+        // Clear search helper
+        function clearSearch() {
+            searchQuery = '';
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) searchInput.value = '';
+        }
+
+        // Attach category button listeners
+        function attachCategoryListeners() {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentCategory = btn.dataset.category;
+                    clearSearch();
+                    renderSidebar();
+                    renderContent();
+                    // Close mobile menu
+                    document.getElementById('sidebar').classList.add('hidden');
+                    document.getElementById('sidebar').classList.add('lg:block');
+                    document.getElementById('menu-icon').classList.remove('hidden');
+                    document.getElementById('close-icon').classList.add('hidden');
+                });
+            });
+        }
+
+        // Mode toggle
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentMode = btn.dataset.mode;
+                clearSearch();
+
+                // Update mode button styles
+                document.querySelectorAll('.mode-btn').forEach(b => {
+                    b.className = 'mode-btn px-6 py-2.5 rounded-lg font-medium transition-all text-slate-600 hover:text-slate-900';
+                });
+                const modeColor = currentMode === 'icons' ? 'bg-pink-600' : 'bg-purple-600';
+                btn.className = `mode-btn px-6 py-2.5 rounded-lg font-medium transition-all ${modeColor} text-white shadow-md`;
+
+                // Show/hide version selector
+                const versionContainer = document.getElementById('version-selector-container');
+                if (currentMode === 'icons') {
+                    versionContainer.classList.add('hidden');
+                    currentCategory = 'getting-started';
+                } else {
+                    versionContainer.classList.remove('hidden');
+                    currentCategory = 'grid';
+                }
+
+                renderSidebar();
+                renderContent();
+            });
+        });
+
         // Version selector
         document.querySelectorAll('.version-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 currentVersion = btn.dataset.version;
+                clearSearch();
                 document.querySelectorAll('.version-btn').forEach(b => {
                     b.className = 'version-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300';
                 });
                 const color = versionColors[currentVersion];
                 btn.className = `version-btn p-4 rounded-xl border-2 transition-all font-medium ${color} text-white border-transparent shadow-lg scale-105`;
+                renderSidebar();
                 renderContent();
-            });
-        });
-
-        // Category selector
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                currentCategory = btn.dataset.category;
-                const color = versionColors[currentVersion];
-                document.querySelectorAll('.category-btn').forEach(b => {
-                    b.className = 'category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50';
-                });
-                btn.className = `category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${color} text-white shadow-md`;
-                renderContent();
-                // Close mobile menu
-                document.getElementById('sidebar').classList.add('hidden');
-                document.getElementById('sidebar').classList.add('lg:block');
-                document.getElementById('menu-icon').classList.remove('hidden');
-                document.getElementById('close-icon').classList.add('hidden');
             });
         });
 
@@ -387,13 +620,38 @@
             const sidebar = document.getElementById('sidebar');
             const menuIcon = document.getElementById('menu-icon');
             const closeIcon = document.getElementById('close-icon');
-            
+
             sidebar.classList.toggle('hidden');
             menuIcon.classList.toggle('hidden');
             closeIcon.classList.toggle('hidden');
         });
 
+        // Search input handler
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+
+            if (searchQuery.length > 0) {
+                const results = performSearch(searchQuery);
+
+                // When on Examples category, keep category selected and show filtered results
+                if (currentMode === 'icons' && currentCategory === 'examples') {
+                    renderFilteredExamples(results);
+                } else {
+                    renderSearchResults(results);
+                    // Deselect current category in sidebar
+                    document.querySelectorAll('.category-btn').forEach(b => {
+                        b.className = 'category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50';
+                    });
+                }
+            } else {
+                // Clear search, restore normal view
+                renderSidebar();
+                renderContent();
+            }
+        });
+
         // Initial render
+        renderSidebar();
         renderContent();
     </script>
 </body>
