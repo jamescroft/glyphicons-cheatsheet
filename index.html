@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Cheat Sheets</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icon Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/feather-icons"></script>
     <style>
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -74,6 +77,25 @@
             </div>
         </div>
 
+        <!-- Icon Library Selector -->
+        <div id="icon-library-selector-container" class="mb-8 hidden">
+            <label class="block text-sm font-medium text-slate-700 mb-3">Select Icon Library</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="icon-library-selector">
+                <button data-library="bootstrap" class="library-btn p-4 rounded-xl border-2 transition-all font-medium bg-pink-600 text-white border-transparent shadow-lg scale-105">
+                    Bootstrap Icons
+                </button>
+                <button data-library="fontawesome" class="library-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300">
+                    Font Awesome
+                </button>
+                <button data-library="feather" class="library-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300">
+                    Feather
+                </button>
+                <button data-library="octicons" class="library-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300">
+                    Octicons
+                </button>
+            </div>
+        </div>
+
         <!-- Search Bar -->
         <div class="mb-8">
             <div class="relative">
@@ -125,112 +147,19 @@
         </div>
     </div>
 
+    <!-- Bootstrap Data Files -->
+    <script src="data/bootstrap/bootstrap-5.3.js"></script>
+    <script src="data/bootstrap/bootstrap-4.6.js"></script>
+    <script src="data/bootstrap/bootstrap-3.4.js"></script>
+    <script src="data/bootstrap/bootstrap-2.3.js"></script>
     <script src="data/icons.js"></script>
     <script>
-        // Content data
+        // Content data - references external files
         const contentData = {
-            '5.3': {
-                grid: {
-                    title: 'Grid System',
-                    items: [
-                        { name: 'Container', code: '<div class="container">...</div>', description: 'Fixed-width container with responsive breakpoints' },
-                        { name: 'Container Fluid', code: '<div class="container-fluid">...</div>', description: 'Full-width container spanning viewport' },
-                        { name: 'Row', code: '<div class="row">...</div>', description: 'Wrapper for columns with -12px margin' },
-                        { name: 'Columns', code: '<div class="col-md-6">...</div>', description: 'Responsive columns (breakpoints: sm, md, lg, xl, xxl)' },
-                        { name: 'Auto Layout', code: '<div class="col">...</div>', description: 'Equal-width columns without specifying size' },
-                        { name: 'Offset', code: '<div class="col-md-4 offset-md-4">...</div>', description: 'Offset columns to the right' }
-                    ]
-                },
-                typography: {
-                    title: 'Typography',
-                    items: [
-                        { name: 'Display Headings', code: '<h1 class="display-1">...</h1>', description: 'Larger, attention-grabbing headings (1-6)' },
-                        { name: 'Lead Text', code: '<p class="lead">...</p>', description: 'Make paragraph stand out' },
-                        { name: 'Text Alignment', code: '<p class="text-start">...</p>', description: 'text-start, text-center, text-end' },
-                        { name: 'Text Colors', code: '<p class="text-primary">...</p>', description: 'primary, secondary, success, danger, warning, info' },
-                        { name: 'Font Weight', code: '<span class="fw-bold">...</span>', description: 'fw-light, fw-normal, fw-bold, fw-bolder' },
-                        { name: 'Text Transform', code: '<p class="text-uppercase">...</p>', description: 'uppercase, lowercase, capitalize' }
-                    ]
-                },
-                components: {
-                    title: 'Components',
-                    items: [
-                        { name: 'Button', code: '<button class="btn btn-primary">Button</button>', description: 'Primary action button' },
-                        { name: 'Card', code: '<div class="card"><div class="card-body">...</div></div>', description: 'Flexible content container' },
-                        { name: 'Alert', code: '<div class="alert alert-warning">...</div>', description: 'Contextual feedback messages' },
-                        { name: 'Badge', code: '<span class="badge bg-primary">New</span>', description: 'Small count and labeling component' },
-                        { name: 'Navbar', code: '<nav class="navbar navbar-expand-lg">...</nav>', description: 'Responsive navigation header' },
-                        { name: 'Modal', code: '<div class="modal" tabindex="-1">...</div>', description: 'Dialog overlay component' }
-                    ]
-                },
-                utilities: {
-                    title: 'Utility Classes',
-                    items: [
-                        { name: 'Margin', code: '<div class="m-3">...</div>', description: 'm-{0-5}, mt-, mb-, ms-, me-, mx-, my-' },
-                        { name: 'Padding', code: '<div class="p-3">...</div>', description: 'p-{0-5}, pt-, pb-, ps-, pe-, px-, py-' },
-                        { name: 'Display', code: '<div class="d-flex">...</div>', description: 'd-none, d-block, d-flex, d-grid, d-inline' },
-                        { name: 'Flexbox', code: '<div class="d-flex justify-content-center">...</div>', description: 'justify-content-, align-items-, flex-direction-' },
-                        { name: 'Spacing', code: '<div class="gap-3">...</div>', description: 'Gap spacing for flex/grid containers' },
-                        { name: 'Borders', code: '<div class="border border-primary">...</div>', description: 'border, border-{top|end|bottom|start}' }
-                    ]
-                },
-                forms: {
-                    title: 'Forms',
-                    items: [
-                        { name: 'Form Control', code: '<input class="form-control" type="text">', description: 'Textual form input' },
-                        { name: 'Form Select', code: '<select class="form-select">...</select>', description: 'Custom select menu' },
-                        { name: 'Checkbox', code: '<input class="form-check-input" type="checkbox">', description: 'Checkbox input' },
-                        { name: 'Input Group', code: '<div class="input-group">...</div>', description: 'Extend form controls with text/buttons' },
-                        { name: 'Validation', code: '<input class="form-control is-valid">', description: 'is-valid, is-invalid states' },
-                        { name: 'Floating Label', code: '<div class="form-floating">...</div>', description: 'Floating label inputs' }
-                    ]
-                },
-                javascript: {
-                    title: 'JavaScript Components',
-                    items: [
-                        { name: 'Collapse', code: '<div class="collapse" id="example">...</div>', description: 'Toggle visibility with data-bs-toggle' },
-                        { name: 'Dropdown', code: '<div class="dropdown">...</div>', description: 'Toggleable contextual overlay' },
-                        { name: 'Toast', code: '<div class="toast">...</div>', description: 'Lightweight notification' },
-                        { name: 'Tooltip', code: 'data-bs-toggle="tooltip" title="..."', description: 'Requires JavaScript initialization' },
-                        { name: 'Offcanvas', code: '<div class="offcanvas offcanvas-start">...</div>', description: 'Hidden sidebar component' },
-                        { name: 'Carousel', code: '<div class="carousel slide">...</div>', description: 'Cycling slideshow component' }
-                    ]
-                },
-            },
-            '4.6': {
-                grid: {
-                    title: 'Grid System',
-                    items: [
-                        { name: 'Container', code: '<div class="container">...</div>', description: 'Fixed-width container' },
-                        { name: 'Container Fluid', code: '<div class="container-fluid">...</div>', description: 'Full-width container' },
-                        { name: 'Row', code: '<div class="row">...</div>', description: 'Wrapper for columns' },
-                        { name: 'Columns', code: '<div class="col-md-6">...</div>', description: 'Breakpoints: sm, md, lg, xl' },
-                        { name: 'No Gutters', code: '<div class="row no-gutters">...</div>', description: 'Remove column gutters' }
-                    ]
-                }
-            },
-            '3.4': {
-                grid: {
-                    title: 'Grid System',
-                    items: [
-                        { name: 'Container', code: '<div class="container">...</div>', description: 'Fixed-width container' },
-                        { name: 'Row', code: '<div class="row">...</div>', description: 'Wrapper for columns' },
-                        { name: 'Columns', code: '<div class="col-md-6">...</div>', description: 'Breakpoints: xs, sm, md, lg' },
-                        { name: 'Column Offset', code: '<div class="col-md-offset-4">...</div>', description: 'Offset columns (different syntax than v5)' }
-                    ]
-                }
-            },
-            '2.3': {
-                grid: {
-                    title: 'Grid System',
-                    items: [
-                        { name: 'Container', code: '<div class="container">...</div>', description: 'Fixed-width container' },
-                        { name: 'Row', code: '<div class="row">...</div>', description: 'Wrapper for columns' },
-                        { name: 'Span Columns', code: '<div class="span6">...</div>', description: '12 column grid with span1-span12' },
-                        { name: 'Offset', code: '<div class="offset4">...</div>', description: 'Offset columns' }
-                    ]
-                }
-            }
+            '5.3': bootstrap53Data,
+            '4.6': bootstrap46Data,
+            '3.4': bootstrap34Data,
+            '2.3': bootstrap23Data
         };
 
         const versionColors = {
@@ -238,6 +167,13 @@
             '4.6': 'bg-blue-600',
             '3.4': 'bg-green-600',
             '2.3': 'bg-orange-600'
+        };
+
+        const iconLibraryColors = {
+            'bootstrap': 'bg-pink-600',
+            'fontawesome': 'bg-blue-600',
+            'feather': 'bg-cyan-600',
+            'octicons': 'bg-slate-700'
         };
 
         // Sidebar category definitions
@@ -260,13 +196,14 @@
         let currentMode = 'classes';
         let currentVersion = '5.3';
         let currentCategory = 'grid';
+        let currentIconLibrary = 'bootstrap';
         let searchQuery = '';
 
         // Render sidebar categories based on current mode
         function renderSidebar() {
             const categories = currentMode === 'icons' ? iconsCategories : classesCategories;
             const nav = document.getElementById('category-nav');
-            const activeColor = currentMode === 'icons' ? 'bg-pink-600' : versionColors[currentVersion];
+            const activeColor = currentMode === 'icons' ? iconLibraryColors[currentIconLibrary] : versionColors[currentVersion];
 
             nav.innerHTML = categories.map((cat, index) => {
                 const isActive = cat.id === currentCategory;
@@ -297,12 +234,19 @@
             const cdnCode = document.getElementById('cdn-code');
 
             if (currentMode === 'icons') {
-                content = iconsData[currentCategory] || iconsData['getting-started'];
-                document.getElementById('content-title').textContent = content.title;
-                versionBadge.textContent = 'All versions';
-                versionBadge.className = 'px-4 py-1.5 bg-pink-600 text-white text-sm font-medium rounded-full';
-                cdnVersionSpan.textContent = 'Icons';
-                cdnCode.textContent = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">';
+                const libraryData = iconsData[currentIconLibrary];
+                content = libraryData.categories[currentCategory] || libraryData.categories['getting-started'];
+                // Show count for Examples category
+                if (currentCategory === 'examples') {
+                    document.getElementById('content-title').textContent = `${content.title} (${content.items.length} icons)`;
+                } else {
+                    document.getElementById('content-title').textContent = content.title;
+                }
+                const libraryColor = iconLibraryColors[currentIconLibrary];
+                versionBadge.textContent = libraryData.name;
+                versionBadge.className = `px-4 py-1.5 ${libraryColor} text-white text-sm font-medium rounded-full`;
+                cdnVersionSpan.textContent = libraryData.name;
+                cdnCode.textContent = libraryData.cdnLink;
             } else {
                 content = contentData[currentVersion]?.[currentCategory] || contentData['5.3'].grid;
                 document.getElementById('content-title').textContent = content.title;
@@ -328,22 +272,58 @@
             if (currentMode === 'icons' && currentCategory === 'examples') {
                 // Sort icons alphabetically by name
                 const sortedItems = [...content.items].sort((a, b) => a.name.localeCompare(b.name));
+                const libraryColor = iconLibraryColors[currentIconLibrary];
+                const hoverColor = {
+                    'bootstrap': 'hover:border-pink-200',
+                    'fontawesome': 'hover:border-blue-200',
+                    'feather': 'hover:border-cyan-200',
+                    'octicons': 'hover:border-slate-300'
+                }[currentIconLibrary];
+                const btnColor = {
+                    'bootstrap': 'bg-pink-100 hover:bg-pink-200 text-pink-700',
+                    'fontawesome': 'bg-blue-100 hover:bg-blue-200 text-blue-700',
+                    'feather': 'bg-cyan-100 hover:bg-cyan-200 text-cyan-700',
+                    'octicons': 'bg-slate-200 hover:bg-slate-300 text-slate-700'
+                }[currentIconLibrary];
+
+                // Generate icon HTML based on library
+                function renderIconPreview(item) {
+                    switch (currentIconLibrary) {
+                        case 'bootstrap':
+                            return `<i class="bi ${item.icon}"></i>`;
+                        case 'fontawesome':
+                            return `<i class="${item.icon}"></i>`;
+                        case 'feather':
+                            return `<i data-feather="${item.icon}"></i>`;
+                        case 'octicons':
+                            return `<span class="octicon ${item.icon}"></span>`;
+                        default:
+                            return `<i class="${item.icon}"></i>`;
+                    }
+                }
+
                 container.innerHTML = `
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                         ${sortedItems.map((item, index) => `
-                            <div class="border-2 border-slate-100 rounded-lg p-4 hover:border-pink-200 hover:shadow-md transition-all animate-slide-in text-center flex flex-col h-full">
+                            <div class="border-2 border-slate-100 rounded-lg p-4 ${hoverColor} hover:shadow-md transition-all animate-slide-in text-center flex flex-col h-full">
                                 <div class="text-4xl mb-3 text-slate-700">
-                                    <i class="bi ${item.icon}"></i>
+                                    ${renderIconPreview(item)}
                                 </div>
                                 <h3 class="text-sm font-semibold text-slate-900 mb-1">${item.name}</h3>
                                 <p class="text-xs text-slate-500 mb-3 flex-grow">${item.description}</p>
-                                <button data-code="${escapeHtml(item.code)}" class="copy-btn text-xs px-3 py-1.5 bg-pink-100 hover:bg-pink-200 text-pink-700 rounded-md transition-colors w-full mt-auto">
+                                <button data-code="${escapeHtml(item.code)}" class="copy-btn text-xs px-3 py-1.5 ${btnColor} rounded-md transition-colors w-full mt-auto">
                                     Copy
                                 </button>
                             </div>
                         `).join('')}
                     </div>
                 `;
+
+                // Initialize Feather icons if needed
+                if (currentIconLibrary === 'feather' && typeof feather !== 'undefined') {
+                    feather.replace();
+                }
+
                 // Attach event listeners for sorted icon examples
                 document.querySelectorAll('.copy-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
@@ -355,14 +335,26 @@
             } else {
                 container.innerHTML = content.items.map((item, index) => `
                     <div class="border-2 border-slate-100 rounded-lg p-5 hover:border-purple-200 hover:shadow-md transition-all animate-slide-in">
-                        <div class="flex items-start justify-between mb-2">
-                            <h3 class="text-lg font-semibold text-slate-900">${item.name}</h3>
-                            <button data-index="${index}" class="copy-btn text-sm px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-md transition-colors">
-                                Copy
-                            </button>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-1">${item.name}</h3>
+                        <p class="text-sm text-slate-600 mb-4">${item.description}</p>
+                        ${item.preview ? `
+                        <div class="bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-lg p-4 mb-4">
+                            <div class="text-xs text-slate-400 uppercase tracking-wide mb-2 font-medium">Preview</div>
+                            <div class="preview-content">${item.preview}</div>
                         </div>
-                        <p class="text-sm text-slate-600 mb-3">${item.description}</p>
-                        <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto"><code class="text-sm">${escapeHtml(item.code)}</code></pre>
+                        ` : ''}
+                        <div class="rounded-lg overflow-hidden border border-slate-700">
+                            <div class="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
+                                <span class="text-xs text-slate-400 font-medium uppercase tracking-wide">HTML</span>
+                                <button data-index="${index}" class="copy-btn text-xs px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded transition-colors flex items-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                </button>
+                            </div>
+                            <pre class="bg-slate-900 text-slate-100 p-4 overflow-x-auto m-0"><code class="text-sm">${escapeHtml(item.code)}</code></pre>
+                        </div>
                     </div>
                 `).join('');
             }
@@ -404,7 +396,8 @@
 
             if (currentMode === 'icons' && currentCategory === 'examples') {
                 // When on Examples category, only search within examples (icon names and descriptions)
-                const examplesCategory = iconsData['examples'];
+                const libraryData = iconsData[currentIconLibrary];
+                const examplesCategory = libraryData.categories['examples'];
                 examplesCategory.items.forEach(item => {
                     if (item.name.toLowerCase().includes(lowerQuery) ||
                         item.description.toLowerCase().includes(lowerQuery)) {
@@ -412,8 +405,9 @@
                     }
                 });
             } else if (currentMode === 'icons') {
-                // Search through all iconsData categories
-                Object.entries(iconsData).forEach(([categoryId, category]) => {
+                // Search through all iconsData categories for current library
+                const libraryData = iconsData[currentIconLibrary];
+                Object.entries(libraryData.categories).forEach(([categoryId, category]) => {
                     category.items.forEach(item => {
                         if (item.name.toLowerCase().includes(lowerQuery) ||
                             item.description.toLowerCase().includes(lowerQuery) ||
@@ -506,7 +500,8 @@
         // Render filtered examples (when searching within Examples category)
         function renderFilteredExamples(results) {
             const container = document.getElementById('content-container');
-            document.getElementById('content-title').textContent = results.length === iconsData['examples'].items.length
+            const libraryData = iconsData[currentIconLibrary];
+            document.getElementById('content-title').textContent = results.length === libraryData.categories['examples'].items.length
                 ? 'Examples'
                 : `Examples (${results.length} found)`;
 
@@ -522,22 +517,56 @@
             // Sort results alphabetically by name
             const sortedResults = [...results].sort((a, b) => a.name.localeCompare(b.name));
 
+            const hoverColor = {
+                'bootstrap': 'hover:border-pink-200',
+                'fontawesome': 'hover:border-blue-200',
+                'feather': 'hover:border-cyan-200',
+                'octicons': 'hover:border-slate-300'
+            }[currentIconLibrary];
+            const btnColor = {
+                'bootstrap': 'bg-pink-100 hover:bg-pink-200 text-pink-700',
+                'fontawesome': 'bg-blue-100 hover:bg-blue-200 text-blue-700',
+                'feather': 'bg-cyan-100 hover:bg-cyan-200 text-cyan-700',
+                'octicons': 'bg-slate-200 hover:bg-slate-300 text-slate-700'
+            }[currentIconLibrary];
+
+            // Generate icon HTML based on library
+            function renderIconPreview(item) {
+                switch (currentIconLibrary) {
+                    case 'bootstrap':
+                        return `<i class="bi ${item.icon}"></i>`;
+                    case 'fontawesome':
+                        return `<i class="${item.icon}"></i>`;
+                    case 'feather':
+                        return `<i data-feather="${item.icon}"></i>`;
+                    case 'octicons':
+                        return `<span class="octicon ${item.icon}"></span>`;
+                    default:
+                        return `<i class="${item.icon}"></i>`;
+                }
+            }
+
             container.innerHTML = `
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                     ${sortedResults.map((item, index) => `
-                        <div class="border-2 border-slate-100 rounded-lg p-4 hover:border-pink-200 hover:shadow-md transition-all animate-slide-in text-center flex flex-col h-full">
+                        <div class="border-2 border-slate-100 rounded-lg p-4 ${hoverColor} hover:shadow-md transition-all animate-slide-in text-center flex flex-col h-full">
                             <div class="text-4xl mb-3 text-slate-700">
-                                <i class="bi ${item.icon}"></i>
+                                ${renderIconPreview(item)}
                             </div>
                             <h3 class="text-sm font-semibold text-slate-900 mb-1">${item.name}</h3>
                             <p class="text-xs text-slate-500 mb-3 flex-grow">${item.description}</p>
-                            <button data-code="${escapeHtml(item.code)}" class="search-copy-btn text-xs px-3 py-1.5 bg-pink-100 hover:bg-pink-200 text-pink-700 rounded-md transition-colors w-full mt-auto">
+                            <button data-code="${escapeHtml(item.code)}" class="search-copy-btn text-xs px-3 py-1.5 ${btnColor} rounded-md transition-colors w-full mt-auto">
                                 Copy
                             </button>
                         </div>
                     `).join('')}
                 </div>
             `;
+
+            // Initialize Feather icons if needed
+            if (currentIconLibrary === 'feather' && typeof feather !== 'undefined') {
+                feather.replace();
+            }
 
             // Attach event listeners to copy buttons
             document.querySelectorAll('.search-copy-btn').forEach(btn => {
@@ -582,16 +611,19 @@
                 document.querySelectorAll('.mode-btn').forEach(b => {
                     b.className = 'mode-btn px-6 py-2.5 rounded-lg font-medium transition-all text-slate-600 hover:text-slate-900';
                 });
-                const modeColor = currentMode === 'icons' ? 'bg-pink-600' : 'bg-purple-600';
+                const modeColor = currentMode === 'icons' ? iconLibraryColors[currentIconLibrary] : 'bg-purple-600';
                 btn.className = `mode-btn px-6 py-2.5 rounded-lg font-medium transition-all ${modeColor} text-white shadow-md`;
 
-                // Show/hide version selector
+                // Show/hide version selector and icon library selector
                 const versionContainer = document.getElementById('version-selector-container');
+                const iconLibraryContainer = document.getElementById('icon-library-selector-container');
                 if (currentMode === 'icons') {
                     versionContainer.classList.add('hidden');
+                    iconLibraryContainer.classList.remove('hidden');
                     currentCategory = 'getting-started';
                 } else {
                     versionContainer.classList.remove('hidden');
+                    iconLibraryContainer.classList.add('hidden');
                     currentCategory = 'grid';
                 }
 
@@ -610,6 +642,21 @@
                 });
                 const color = versionColors[currentVersion];
                 btn.className = `version-btn p-4 rounded-xl border-2 transition-all font-medium ${color} text-white border-transparent shadow-lg scale-105`;
+                renderSidebar();
+                renderContent();
+            });
+        });
+
+        // Icon library selector
+        document.querySelectorAll('.library-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentIconLibrary = btn.dataset.library;
+                clearSearch();
+                document.querySelectorAll('.library-btn').forEach(b => {
+                    b.className = 'library-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300';
+                });
+                const color = iconLibraryColors[currentIconLibrary];
+                btn.className = `library-btn p-4 rounded-xl border-2 transition-all font-medium ${color} text-white border-transparent shadow-lg scale-105`;
                 renderSidebar();
                 renderContent();
             });
