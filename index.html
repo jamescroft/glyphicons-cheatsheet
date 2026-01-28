@@ -178,13 +178,43 @@
 
         // Sidebar category definitions
         const classesCategories = [
-            { id: 'grid', name: 'Grid System', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>' },
-            { id: 'typography', name: 'Typography', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"></path>' },
+            {
+                id: 'layout',
+                name: 'Layout',
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>',
+                isParent: true,
+                children: [
+                    { id: 'breakpoints', name: 'Breakpoints' },
+                    { id: 'containers', name: 'Containers' },
+                    { id: 'grid', name: 'Grid' },
+                    { id: 'columns', name: 'Columns' },
+                    { id: 'gutters', name: 'Gutters' },
+                    { id: 'layout-utilities', name: 'Utilities' },
+                    { id: 'z-index', name: 'Z-index' },
+                    { id: 'css-grid', name: 'CSS Grid' }
+                ]
+            },
+{
+                id: 'content',
+                name: 'Content',
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>',
+                isParent: true,
+                children: [
+                    { id: 'reboot', name: 'Reboot' },
+                    { id: 'typography', name: 'Typography' },
+                    { id: 'images', name: 'Images' },
+                    { id: 'tables', name: 'Tables' },
+                    { id: 'figures', name: 'Figures' }
+                ]
+            },
             { id: 'components', name: 'Components', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z"></path>' },
             { id: 'utilities', name: 'Utilities', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>' },
             { id: 'forms', name: 'Forms', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>' },
             { id: 'javascript', name: 'JavaScript', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>' }
         ];
+
+        // Track expanded parent categories
+        let expandedCategories = { 'layout': true, 'content': false };
 
         const iconsCategories = [
             { id: 'getting-started', name: 'Getting Started', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>' },
@@ -195,7 +225,7 @@
 
         let currentMode = 'classes';
         let currentVersion = '5.3';
-        let currentCategory = 'grid';
+        let currentCategory = 'breakpoints';
         let currentIconLibrary = 'bootstrap';
         let searchQuery = '';
 
@@ -205,24 +235,83 @@
             const nav = document.getElementById('category-nav');
             const activeColor = currentMode === 'icons' ? iconLibraryColors[currentIconLibrary] : versionColors[currentVersion];
 
+            // Check if current category is a child of a parent
+            function isChildActive(cat) {
+                if (!cat.children) return false;
+                return cat.children.some(child => child.id === currentCategory);
+            }
+
             nav.innerHTML = categories.map((cat, index) => {
                 const isActive = cat.id === currentCategory;
-                const btnClass = isActive
-                    ? `category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${activeColor} text-white shadow-md`
-                    : 'category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50';
+                const hasActiveChild = isChildActive(cat);
+                const isExpanded = expandedCategories[cat.id] || false;
 
-                return `
-                    <button data-category="${cat.id}" class="${btnClass}">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            ${cat.icon}
-                        </svg>
-                        <span class="font-medium">${cat.name}</span>
-                    </button>
-                `;
+                if (cat.isParent && cat.children) {
+                    // Parent category with children
+                    const parentClass = hasActiveChild
+                        ? `parent-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all bg-slate-100 text-slate-900`
+                        : 'parent-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50';
+
+                    const childrenHtml = isExpanded ? cat.children.map(child => {
+                        const isChildActive = child.id === currentCategory;
+                        const childClass = isChildActive
+                            ? `category-btn w-full flex items-center gap-3 pl-10 pr-4 py-2 rounded-lg transition-all ${activeColor} text-white shadow-md text-sm`
+                            : 'category-btn w-full flex items-center gap-3 pl-10 pr-4 py-2 rounded-lg transition-all text-slate-600 hover:bg-slate-50 text-sm';
+
+                        return `
+                            <button data-category="${child.id}" class="${childClass}">
+                                <span class="font-medium">${child.name}</span>
+                            </button>
+                        `;
+                    }).join('') : '';
+
+                    return `
+                        <div class="parent-category">
+                            <button data-parent="${cat.id}" class="${parentClass}">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    ${cat.icon}
+                                </svg>
+                                <span class="font-medium flex-grow text-left">${cat.name}</span>
+                                <svg class="w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <div class="children-container ${isExpanded ? '' : 'hidden'} space-y-1 mt-1">
+                                ${childrenHtml}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Regular category without children
+                    const btnClass = isActive
+                        ? `category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${activeColor} text-white shadow-md`
+                        : 'category-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-slate-700 hover:bg-slate-50';
+
+                    return `
+                        <button data-category="${cat.id}" class="${btnClass}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                ${cat.icon}
+                            </svg>
+                            <span class="font-medium">${cat.name}</span>
+                        </button>
+                    `;
+                }
             }).join('');
 
             // Re-attach category click handlers
             attachCategoryListeners();
+            attachParentListeners();
+        }
+
+        // Handle parent category expand/collapse
+        function attachParentListeners() {
+            document.querySelectorAll('.parent-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const parentId = btn.dataset.parent;
+                    expandedCategories[parentId] = !expandedCategories[parentId];
+                    renderSidebar();
+                });
+            });
         }
 
         // Render content based on current mode
@@ -248,7 +337,35 @@
                 cdnVersionSpan.textContent = libraryData.name;
                 cdnCode.textContent = libraryData.cdnLink;
             } else {
-                content = contentData[currentVersion]?.[currentCategory] || contentData['5.3'].grid;
+                // Try to get content for current version and category
+                // Fall back to 5.3 data if not available, using 'grid' as the fallback for layout subcategories
+                let categoryToUse = currentCategory;
+                let versionData = contentData[currentVersion];
+
+                // Check if category exists in current version
+                if (!versionData?.[currentCategory]) {
+                    // For layout subcategories in older versions, fall back appropriately
+                    const layoutSubcategories = ['breakpoints', 'containers', 'grid', 'columns', 'gutters', 'layout-utilities', 'z-index', 'css-grid'];
+                    const contentSubcategories = ['reboot', 'typography', 'images', 'tables', 'figures'];
+
+                    if (layoutSubcategories.includes(currentCategory)) {
+                        // Try 5.3 data first for layout subcategories
+                        content = contentData['5.3']?.[currentCategory];
+                        if (!content) {
+                            content = versionData?.['grid'] || contentData['5.3'].grid;
+                        }
+                    } else if (contentSubcategories.includes(currentCategory)) {
+                        // Try 5.3 data first for content subcategories
+                        content = contentData['5.3']?.[currentCategory];
+                        if (!content) {
+                            content = versionData?.['typography'] || contentData['5.3'].typography;
+                        }
+                    } else {
+                        content = contentData['5.3']?.[currentCategory] || contentData['5.3'].breakpoints;
+                    }
+                } else {
+                    content = versionData[currentCategory];
+                }
                 document.getElementById('content-title').textContent = content.title;
                 versionBadge.textContent = `v${currentVersion}`;
                 const versionColor = versionColors[currentVersion];
@@ -624,7 +741,8 @@
                 } else {
                     versionContainer.classList.remove('hidden');
                     iconLibraryContainer.classList.add('hidden');
-                    currentCategory = 'grid';
+                    currentCategory = 'breakpoints';
+                    expandedCategories['layout'] = true;
                 }
 
                 renderSidebar();
