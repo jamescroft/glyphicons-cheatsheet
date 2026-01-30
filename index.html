@@ -207,8 +207,6 @@
                     { id: 'figures', name: 'Figures' }
                 ]
             },
-            { id: 'components', name: 'Components', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z"></path>' },
-            { id: 'utilities', name: 'Utilities', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>' },
             {
                 id: 'forms',
                 name: 'Forms',
@@ -225,11 +223,26 @@
                     { id: 'validation', name: 'Validation' }
                 ]
             },
+            {
+                id: 'components',
+                name: 'Components',
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z"></path>',
+                isParent: true,
+                children: [
+                    { id: 'accordion', name: 'Accordion' },
+                    { id: 'alerts', name: 'Alerts' },
+                    { id: 'badge', name: 'Badge' },
+                    { id: 'breadcrumb', name: 'Breadcrumb' },
+                    { id: 'buttons', name: 'Buttons' },
+                    { id: 'button-group', name: 'Button group' }
+                ]
+            },
+            { id: 'utilities', name: 'Utilities', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>' },
             { id: 'javascript', name: 'JavaScript', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>' }
         ];
 
         // Track expanded parent categories
-        let expandedCategories = { 'layout': true, 'content': false, 'forms': false };
+        let expandedCategories = { 'layout': true, 'content': false, 'forms': false, 'components': false };
 
         const iconsCategories = [
             { id: 'getting-started', name: 'Getting Started', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>' },
@@ -358,37 +371,49 @@
                 let versionData = contentData[currentVersion];
 
                 // Check if category exists in current version
-                if (!versionData?.[currentCategory]) {
-                    // For layout subcategories in older versions, fall back appropriately
-                    const layoutSubcategories = ['breakpoints', 'containers', 'grid', 'columns', 'gutters', 'layout-utilities', 'z-index', 'css-grid'];
-                    const contentSubcategories = ['reboot', 'typography', 'images', 'tables', 'figures'];
-                    const formsSubcategories = ['form-control', 'select', 'checks-radios', 'range', 'input-group', 'floating-labels', 'form-layout', 'validation'];
-
-                    if (layoutSubcategories.includes(currentCategory)) {
-                        // Try 5.3 data first for layout subcategories
-                        content = contentData['5.3']?.[currentCategory];
-                        if (!content) {
-                            content = versionData?.['grid'] || contentData['5.3'].grid;
-                        }
-                    } else if (contentSubcategories.includes(currentCategory)) {
-                        // Try 5.3 data first for content subcategories
-                        content = contentData['5.3']?.[currentCategory];
-                        if (!content) {
-                            content = versionData?.['typography'] || contentData['5.3'].typography;
-                        }
-                    } else if (formsSubcategories.includes(currentCategory)) {
-                        // Try 5.3 data first for forms subcategories
-                        content = contentData['5.3']?.[currentCategory];
-                        if (!content) {
-                            content = versionData?.['forms'] || contentData['5.3']['form-control'];
-                        }
-                    } else {
-                        content = contentData['5.3']?.[currentCategory] || contentData['5.3'].breakpoints;
-                    }
-                } else {
+                if (versionData?.[currentCategory]) {
+                    // Use the current version's data if available
                     content = versionData[currentCategory];
+                } else {
+                    // No data available for this category in this version
+                    content = null;
                 }
-                document.getElementById('content-title').textContent = content.title;
+
+                // Get a readable title for the category
+                const categoryTitles = {
+                    'breakpoints': 'Breakpoints',
+                    'containers': 'Containers',
+                    'grid': 'Grid',
+                    'columns': 'Columns',
+                    'gutters': 'Gutters',
+                    'layout-utilities': 'Utilities',
+                    'z-index': 'Z-index',
+                    'css-grid': 'CSS Grid',
+                    'reboot': 'Reboot',
+                    'typography': 'Typography',
+                    'images': 'Images',
+                    'tables': 'Tables',
+                    'figures': 'Figures',
+                    'form-control': 'Form control',
+                    'select': 'Select',
+                    'checks-radios': 'Checks & radios',
+                    'range': 'Range',
+                    'input-group': 'Input group',
+                    'floating-labels': 'Floating labels',
+                    'form-layout': 'Layout',
+                    'validation': 'Validation',
+                    'components': 'Components',
+                    'accordion': 'Accordion',
+                    'alerts': 'Alerts',
+                    'badge': 'Badge',
+                    'breadcrumb': 'Breadcrumb',
+                    'buttons': 'Buttons',
+                    'button-group': 'Button group',
+                    'utilities': 'Utilities',
+                    'forms': 'Forms',
+                    'javascript': 'JavaScript'
+                };
+                document.getElementById('content-title').textContent = content?.title || categoryTitles[currentCategory] || currentCategory;
                 versionBadge.textContent = `v${currentVersion}`;
                 const versionColor = versionColors[currentVersion];
                 versionBadge.className = `px-4 py-1.5 ${versionColor} text-white text-sm font-medium rounded-full`;
