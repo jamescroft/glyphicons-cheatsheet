@@ -114,7 +114,7 @@
         <div class="grid lg:grid-cols-4 gap-8">
             <!-- Sidebar Navigation -->
             <div id="sidebar" class="hidden lg:block">
-                <div class="bg-white rounded-xl shadow-sm p-4 sticky top-24">
+                <div class="bg-white rounded-xl shadow-sm p-4">
                     <h3 class="font-semibold text-slate-900 mb-4">Categories</h3>
                     <nav class="space-y-1" id="category-nav">
                         <!-- Categories populated by JavaScript -->
@@ -234,7 +234,20 @@
                     { id: 'badge', name: 'Badge' },
                     { id: 'breadcrumb', name: 'Breadcrumb' },
                     { id: 'buttons', name: 'Buttons' },
-                    { id: 'button-group', name: 'Button group' }
+                    { id: 'button-group', name: 'Button group' },
+                    { id: 'card', name: 'Card' },
+                    { id: 'carousel', name: 'Carousel' },
+                    { id: 'close-button', name: 'Close button' },
+                    { id: 'collapse', name: 'Collapse' },
+                    { id: 'dropdowns', name: 'Dropdowns' },
+                    { id: 'list-group', name: 'List group' },
+                    { id: 'modal', name: 'Modal' },
+                    { id: 'navbar', name: 'Navbar' },
+                    { id: 'navs-tabs', name: 'Navs & tabs' },
+                    { id: 'offcanvas', name: 'Offcanvas' },
+                    { id: 'pagination', name: 'Pagination' },
+                    { id: 'placeholders', name: 'Placeholders' },
+                    { id: 'popovers', name: 'Popovers' }
                 ]
             },
             { id: 'utilities', name: 'Utilities', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>' },
@@ -242,7 +255,7 @@
         ];
 
         // Track expanded parent categories
-        let expandedCategories = { 'layout': true, 'content': false, 'forms': false, 'components': false };
+        let expandedCategories = { 'layout': true, 'content': true, 'forms': true, 'components': true };
 
         const iconsCategories = [
             { id: 'getting-started', name: 'Getting Started', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>' },
@@ -409,6 +422,19 @@
                     'breadcrumb': 'Breadcrumb',
                     'buttons': 'Buttons',
                     'button-group': 'Button group',
+                    'card': 'Card',
+                    'carousel': 'Carousel',
+                    'close-button': 'Close button',
+                    'collapse': 'Collapse',
+                    'dropdowns': 'Dropdowns',
+                    'list-group': 'List group',
+                    'modal': 'Modal',
+                    'navbar': 'Navbar',
+                    'navs-tabs': 'Navs & tabs',
+                    'offcanvas': 'Offcanvas',
+                    'pagination': 'Pagination',
+                    'placeholders': 'Placeholders',
+                    'popovers': 'Popovers',
                     'utilities': 'Utilities',
                     'forms': 'Forms',
                     'javascript': 'JavaScript'
