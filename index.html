@@ -8,6 +8,7 @@
     <!-- Icon Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/octicons@19/index.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
         @keyframes slideIn {
@@ -15,6 +16,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-slide-in { animation: slideIn 0.3s ease-out; }
+        /* Feather icons centering */
+        .text-4xl svg.feather {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: 0 auto;
+            display: block;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
@@ -53,7 +61,7 @@
                     Bootstrap Classes
                 </button>
                 <button data-mode="icons" class="mode-btn px-6 py-2.5 rounded-lg font-medium transition-all text-slate-600 hover:text-slate-900">
-                    Bootstrap Icons
+                    Icon Libraries
                 </button>
             </div>
         </div>
@@ -152,7 +160,20 @@
     <script src="data/bootstrap/bootstrap-4.6.js"></script>
     <script src="data/bootstrap/bootstrap-3.4.js"></script>
     <script src="data/bootstrap/bootstrap-2.3.js"></script>
-    <script src="data/icons.js"></script>
+    <!-- Icon Library Data Files -->
+    <script src="data/icons-bootstrap.js"></script>
+    <script src="data/icons-fontawesome.js"></script>
+    <script src="data/icons-feather.js"></script>
+    <script src="data/icons-octicons.js"></script>
+    <script>
+        // Combine all icon libraries into a single object
+        const iconsData = {
+            ...bootstrapIcons,
+            ...fontawesomeIcons,
+            ...featherIcons,
+            ...octiconsIcons
+        };
+    </script>
     <script>
         // Content data - references external files
         const contentData = {
