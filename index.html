@@ -8,7 +8,6 @@
     <!-- Icon Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/octicons@19/index.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
         @keyframes slideIn {
@@ -22,6 +21,33 @@
             height: 2.5rem;
             margin: 0 auto;
             display: block;
+        }
+        /* Octicons SVG centering */
+        .text-4xl svg.octicon {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: 0 auto;
+            display: block;
+            fill: currentColor;
+        }
+        /* Anchor link visibility on section header hover */
+        .section-header:hover .anchor-link {
+            opacity: 1;
+        }
+        .anchor-link {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .anchor-link:hover, .anchor-link:focus {
+            opacity: 1;
+        }
+        /* Copied feedback animation */
+        @keyframes linkCopied {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .anchor-link.copied .anchor-icon {
+            animation: linkCopied 0.3s ease;
         }
     </style>
 </head>
@@ -268,10 +294,16 @@
                     { id: 'offcanvas', name: 'Offcanvas' },
                     { id: 'pagination', name: 'Pagination' },
                     { id: 'placeholders', name: 'Placeholders' },
-                    { id: 'popovers', name: 'Popovers' }
+                    { id: 'popovers', name: 'Popovers' },
+                    { id: 'progress', name: 'Progress' },
+                    { id: 'scrollspy', name: 'Scrollspy' },
+                    { id: 'spinners', name: 'Spinners' },
+                    { id: 'toasts', name: 'Toasts' },
+                    { id: 'tooltips', name: 'Tooltips' }
                 ]
             },
             { id: 'utilities', name: 'Utilities', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>' },
+            { id: 'helpers', name: 'Helpers', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>' },
             { id: 'javascript', name: 'JavaScript', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>' }
         ];
 
@@ -456,7 +488,13 @@
                     'pagination': 'Pagination',
                     'placeholders': 'Placeholders',
                     'popovers': 'Popovers',
+                    'progress': 'Progress',
+                    'scrollspy': 'Scrollspy',
+                    'spinners': 'Spinners',
+                    'toasts': 'Toasts',
+                    'tooltips': 'Tooltips',
                     'utilities': 'Utilities',
+                    'helpers': 'Helpers',
                     'forms': 'Forms',
                     'javascript': 'JavaScript'
                 };
@@ -507,7 +545,7 @@
                         case 'feather':
                             return `<i data-feather="${item.icon}"></i>`;
                         case 'octicons':
-                            return `<span class="octicon ${item.icon}"></span>`;
+                            return `<span class="octicon-placeholder" data-octicon="${item.icon}"></span>`;
                         default:
                             return `<i class="${item.icon}"></i>`;
                     }
@@ -535,6 +573,11 @@
                     feather.replace();
                 }
 
+                // Load Octicons SVGs if needed
+                if (currentIconLibrary === 'octicons') {
+                    loadOcticonsSVGs();
+                }
+
                 // Attach event listeners for sorted icon examples
                 document.querySelectorAll('.copy-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
@@ -544,30 +587,105 @@
                 });
                 return;
             } else {
-                container.innerHTML = content.items.map((item, index) => `
-                    <div class="border-2 border-slate-100 rounded-lg p-5 hover:border-purple-200 hover:shadow-md transition-all animate-slide-in">
-                        <h3 class="text-lg font-semibold text-slate-900 mb-1">${item.name}</h3>
-                        <p class="text-sm text-slate-600 mb-4">${item.description}</p>
-                        ${item.preview ? `
-                        <div class="bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-lg p-4 mb-4">
-                            <div class="text-xs text-slate-400 uppercase tracking-wide mb-2 font-medium">Preview</div>
-                            <div class="preview-content">${item.preview}</div>
-                        </div>
-                        ` : ''}
-                        <div class="rounded-lg overflow-hidden border border-slate-700">
-                            <div class="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
-                                <span class="text-xs text-slate-400 font-medium uppercase tracking-wide">HTML</span>
-                                <button data-index="${index}" class="copy-btn text-xs px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded transition-colors flex items-center gap-1.5">
-                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                    </svg>
-                                    Copy
-                                </button>
+                // Check if items have sections for grouping
+                const hasSections = content.items.some(item => item.section);
+
+                if (hasSections) {
+                    // Group items by section
+                    const sections = [];
+                    let currentSection = null;
+                    content.items.forEach((item, index) => {
+                        if (item.section !== currentSection) {
+                            currentSection = item.section;
+                            sections.push({ title: currentSection, items: [] });
+                        }
+                        sections[sections.length - 1].items.push({ ...item, originalIndex: index });
+                    });
+
+                    // Helper function to create URL-friendly slugs
+                    const createSlug = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+                    container.innerHTML = sections.map((section, sectionIndex) => {
+                        const sectionSlug = createSlug(section.title);
+                        return `
+                        <div id="${currentCategory}-${sectionSlug}" class="mb-10 bg-gradient-to-r from-slate-50 to-white rounded-xl border border-slate-200 shadow-sm overflow-hidden scroll-mt-24">
+                            <div class="section-header bg-gradient-to-r from-purple-600 to-purple-500 px-6 py-4 cursor-default">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-white/20 text-white font-bold text-sm">${sectionIndex + 1}</span>
+                                        <h2 class="text-xl font-bold text-white">${section.title}</h2>
+                                        <a href="#${currentCategory}-${sectionSlug}" class="anchor-link text-white/70 hover:text-white" title="Copy link to section" onclick="navigator.clipboard.writeText(window.location.href.split('#')[0] + '#${currentCategory}-${sectionSlug}'); this.classList.add('copied'); setTimeout(() => this.classList.remove('copied'), 300); return false;">
+                                            <svg class="anchor-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    ${content.sectionDocs && content.sectionDocs[section.title] ? `
+                                    <a href="${content.sectionDocs[section.title]}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm text-white/90 hover:text-white bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-all">
+                                        <span>Docs</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                        </svg>
+                                    </a>
+                                    ` : ''}
+                                </div>
                             </div>
-                            <pre class="bg-slate-900 text-slate-100 p-4 overflow-x-auto m-0"><code class="text-sm">${escapeHtml(item.code)}</code></pre>
+                            <div class="p-6">
+                                <div class="grid gap-4">
+                                    ${section.items.map(item => `
+                                        <div class="border-2 border-slate-100 rounded-lg p-5 hover:border-purple-200 hover:shadow-md transition-all animate-slide-in bg-white">
+                                            <h3 class="text-lg font-semibold text-slate-900 mb-1">${item.name}</h3>
+                                            <p class="text-sm text-slate-600 mb-4">${item.description}</p>
+                                            ${item.preview ? `
+                                            <div class="bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-lg p-4 mb-4">
+                                                <div class="text-xs text-slate-400 uppercase tracking-wide mb-2 font-medium">Preview</div>
+                                                <div class="preview-content">${item.preview}</div>
+                                            </div>
+                                            ` : ''}
+                                            <div class="rounded-lg overflow-hidden border border-slate-700">
+                                                <div class="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
+                                                    <span class="text-xs text-slate-400 font-medium uppercase tracking-wide">HTML</span>
+                                                    <button data-index="${item.originalIndex}" class="copy-btn text-xs px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded transition-colors flex items-center gap-1.5">
+                                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                                        </svg>
+                                                        Copy
+                                                    </button>
+                                                </div>
+                                                <pre class="bg-slate-900 text-slate-100 p-4 overflow-x-auto m-0"><code class="text-sm">${escapeHtml(item.code)}</code></pre>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                `).join('');
+                    `}).join('');
+                } else {
+                    container.innerHTML = content.items.map((item, index) => `
+                        <div class="border-2 border-slate-100 rounded-lg p-5 hover:border-purple-200 hover:shadow-md transition-all animate-slide-in">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1">${item.name}</h3>
+                            <p class="text-sm text-slate-600 mb-4">${item.description}</p>
+                            ${item.preview ? `
+                            <div class="bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-lg p-4 mb-4">
+                                <div class="text-xs text-slate-400 uppercase tracking-wide mb-2 font-medium">Preview</div>
+                                <div class="preview-content">${item.preview}</div>
+                            </div>
+                            ` : ''}
+                            <div class="rounded-lg overflow-hidden border border-slate-700">
+                                <div class="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
+                                    <span class="text-xs text-slate-400 font-medium uppercase tracking-wide">HTML</span>
+                                    <button data-index="${index}" class="copy-btn text-xs px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded transition-colors flex items-center gap-1.5">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                        Copy
+                                    </button>
+                                </div>
+                                <pre class="bg-slate-900 text-slate-100 p-4 overflow-x-auto m-0"><code class="text-sm">${escapeHtml(item.code)}</code></pre>
+                            </div>
+                        </div>
+                    `).join('');
+                }
             }
 
             // Attach event listeners to copy buttons
@@ -598,6 +716,44 @@
                     button.classList.remove('bg-green-100');
                 }, 2000);
             });
+        }
+
+        // Cache for Octicons SVGs
+        const octiconsCache = {};
+
+        // Load Octicons SVGs from CDN
+        async function loadOcticonsSVGs() {
+            const placeholders = document.querySelectorAll('.octicon-placeholder[data-octicon]');
+
+            for (const placeholder of placeholders) {
+                const iconName = placeholder.getAttribute('data-octicon');
+                if (!iconName || iconName === 'undefined') continue;
+
+                try {
+                    let svgContent;
+                    if (octiconsCache[iconName]) {
+                        svgContent = octiconsCache[iconName];
+                    } else {
+                        const response = await fetch(`https://unpkg.com/@primer/octicons@19.8.0/build/svg/${iconName}-16.svg`);
+                        if (response.ok) {
+                            svgContent = await response.text();
+                            octiconsCache[iconName] = svgContent;
+                        }
+                    }
+
+                    if (svgContent) {
+                        const wrapper = document.createElement('div');
+                        wrapper.innerHTML = svgContent;
+                        const svg = wrapper.querySelector('svg');
+                        if (svg) {
+                            svg.classList.add('octicon');
+                            placeholder.replaceWith(svg);
+                        }
+                    }
+                } catch (error) {
+                    console.warn(`Failed to load octicon: ${iconName}`, error);
+                }
+            }
         }
 
         // Search function - returns matching items across all categories
@@ -751,7 +907,7 @@
                     case 'feather':
                         return `<i data-feather="${item.icon}"></i>`;
                     case 'octicons':
-                        return `<span class="octicon ${item.icon}"></span>`;
+                        return `<span class="octicon-placeholder" data-octicon="${item.icon}"></span>`;
                     default:
                         return `<i class="${item.icon}"></i>`;
                 }
@@ -777,6 +933,11 @@
             // Initialize Feather icons if needed
             if (currentIconLibrary === 'feather' && typeof feather !== 'undefined') {
                 feather.replace();
+            }
+
+            // Load Octicons SVGs if needed
+            if (currentIconLibrary === 'octicons') {
+                loadOcticonsSVGs();
             }
 
             // Attach event listeners to copy buttons
@@ -909,9 +1070,161 @@
             }
         });
 
+        // Handle hash navigation after content renders
+        function handleHashNavigation() {
+            const hash = window.location.hash;
+            if (hash) {
+                const hashValue = hash.substring(1); // Remove the #
+
+                // Check if the hash contains a category prefix (e.g., "helpers-clearfix")
+                const dashIndex = hashValue.indexOf('-');
+                if (dashIndex > 0) {
+                    const category = hashValue.substring(0, dashIndex);
+
+                    // Check if we need to switch categories
+                    if (currentCategory !== category) {
+                        // Find which mode/library this category belongs to
+                        let foundInClasses = false;
+                        let foundInIcons = false;
+
+                        // Check in Bootstrap data
+                        for (const version of Object.keys(contentData)) {
+                            if (contentData[version][category]) {
+                                foundInClasses = true;
+                                currentMode = 'classes';
+                                currentVersion = version;
+                                break;
+                            }
+                        }
+
+                        // Check in icons data
+                        if (!foundInClasses) {
+                            for (const lib of Object.keys(iconsData)) {
+                                if (iconsData[lib].categories[category]) {
+                                    foundInIcons = true;
+                                    currentMode = 'icons';
+                                    currentIconLibrary = lib;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (foundInClasses || foundInIcons) {
+                            currentCategory = category;
+
+                            // Update mode button styles
+                            document.querySelectorAll('.mode-btn').forEach(b => {
+                                b.className = 'mode-btn px-6 py-2.5 rounded-lg font-medium transition-all text-slate-600 hover:text-slate-900';
+                            });
+                            const activeBtn = document.querySelector(`.mode-btn[data-mode="${currentMode}"]`);
+                            if (activeBtn) {
+                                const modeColor = currentMode === 'icons' ? 'bg-blue-600' : 'bg-purple-600';
+                                activeBtn.className = `mode-btn px-6 py-2.5 rounded-lg font-medium transition-all ${modeColor} text-white shadow-md`;
+                            }
+
+                            // Show/hide version selector and icon library selector
+                            const versionContainer = document.getElementById('version-selector-container');
+                            const iconLibraryContainer = document.getElementById('icon-library-selector-container');
+                            if (currentMode === 'icons') {
+                                versionContainer.classList.add('hidden');
+                                iconLibraryContainer.classList.remove('hidden');
+                            } else {
+                                versionContainer.classList.remove('hidden');
+                                iconLibraryContainer.classList.add('hidden');
+                            }
+
+                            renderSidebar();
+                            renderContent();
+                        }
+                    }
+                }
+
+                // Small delay to ensure DOM is fully rendered, then scroll
+                setTimeout(() => {
+                    const element = document.querySelector(hash);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 150);
+            }
+        }
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', handleHashNavigation);
+
+        // Check for hash BEFORE initial render to set the correct category
+        function initFromHash() {
+            const hash = window.location.hash;
+            if (hash) {
+                const hashValue = hash.substring(1);
+                const dashIndex = hashValue.indexOf('-');
+                if (dashIndex > 0) {
+                    const category = hashValue.substring(0, dashIndex);
+
+                    // Check in Bootstrap data
+                    for (const version of Object.keys(contentData)) {
+                        if (contentData[version][category]) {
+                            currentMode = 'classes';
+                            currentVersion = version;
+                            currentCategory = category;
+                            return true;
+                        }
+                    }
+
+                    // Check in icons data
+                    for (const lib of Object.keys(iconsData)) {
+                        if (iconsData[lib].categories[category]) {
+                            currentMode = 'icons';
+                            currentIconLibrary = lib;
+                            currentCategory = category;
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        // Initialize from hash if present
+        const hasHashCategory = initFromHash();
+
+        // Update UI if we initialized from hash
+        if (hasHashCategory) {
+            // Update mode button styles
+            document.querySelectorAll('.mode-btn').forEach(b => {
+                b.className = 'mode-btn px-6 py-2.5 rounded-lg font-medium transition-all text-slate-600 hover:text-slate-900';
+            });
+            const activeBtn = document.querySelector(`.mode-btn[data-mode="${currentMode}"]`);
+            if (activeBtn) {
+                const modeColor = currentMode === 'icons' ? iconLibraryColors[currentIconLibrary] : versionColors[currentVersion];
+                activeBtn.className = `mode-btn px-6 py-2.5 rounded-lg font-medium transition-all ${modeColor} text-white shadow-md`;
+            }
+
+            // Show/hide version selector and icon library selector
+            const versionContainer = document.getElementById('version-selector-container');
+            const iconLibraryContainer = document.getElementById('icon-library-selector-container');
+            if (currentMode === 'icons') {
+                versionContainer.classList.add('hidden');
+                iconLibraryContainer.classList.remove('hidden');
+            } else {
+                versionContainer.classList.remove('hidden');
+                iconLibraryContainer.classList.add('hidden');
+            }
+        }
+
         // Initial render
         renderSidebar();
         renderContent();
+
+        // Scroll to section after render if we had a hash
+        if (hasHashCategory && window.location.hash) {
+            setTimeout(() => {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 200);
+        }
     </script>
 </body>
 </html>
