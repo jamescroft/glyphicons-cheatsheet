@@ -49,6 +49,38 @@
         .anchor-link.copied .anchor-icon {
             animation: linkCopied 0.3s ease;
         }
+        .load-more-btn {
+            background: transparent;
+            border: 1px dashed rgba(15, 23, 42, 0.25);
+            color: #475569;
+        }
+        .load-more-btn:hover {
+            border-color: rgba(15, 23, 42, 0.4);
+            background: rgba(15, 23, 42, 0.04);
+        }
+        .load-more-btn.loading {
+            background: rgba(15, 23, 42, 0.06);
+            border-color: rgba(15, 23, 42, 0.5);
+            color: #0f172a;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            transform: translateY(-2px);
+        }
+        .load-more-hint {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+        .load-more-spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(15, 23, 42, 0.2);
+            border-top-color: rgba(15, 23, 42, 0.6);
+            border-radius: 9999px;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
@@ -127,6 +159,35 @@
                 <button data-library="octicons" class="library-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300">
                     Octicons
                 </button>
+            </div>
+        </div>
+        <!-- Font Awesome Version Selector -->
+        <div id="fa-version-selector-container" class="mb-8 hidden">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-800">Font Awesome Version</label>
+                    <p class="text-xs text-slate-500">Select a version to see specific guidance and examples.</p>
+                </div>
+                <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm">
+                    <span class="inline-flex h-2 w-2 rounded-full bg-blue-500" id="fa-version-dot"></span>
+                    <span id="fa-version-label">FA6</span>
+                </div>
+            </div>
+            <div class="mt-4 p-1 rounded-2xl bg-gradient-to-r from-slate-100 via-white to-slate-100 border border-slate-200">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-1" id="fa-version-selector">
+                    <button data-fa-version="7" class="fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-slate-700 hover:bg-white/70">
+                        FA7
+                    </button>
+                    <button data-fa-version="6" class="fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-slate-700 hover:bg-white/70">
+                        FA6
+                    </button>
+                    <button data-fa-version="5" class="fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-slate-700 hover:bg-white/70">
+                        FA5
+                    </button>
+                    <button data-fa-version="4" class="fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-slate-700 hover:bg-white/70">
+                        FA4
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -223,6 +284,13 @@
             'octicons': 'bg-slate-700'
         };
 
+        const fontAwesomeVersionColors = {
+            '7': { badge: 'bg-indigo-600', dot: 'bg-indigo-500', ring: 'ring-indigo-400/30' },
+            '6': { badge: 'bg-blue-600', dot: 'bg-blue-500', ring: 'ring-blue-400/30' },
+            '5': { badge: 'bg-emerald-600', dot: 'bg-emerald-500', ring: 'ring-emerald-400/30' },
+            '4': { badge: 'bg-amber-600', dot: 'bg-amber-500', ring: 'ring-amber-400/30' }
+        };
+
         // Sidebar category definitions
         const classesCategories = [
             {
@@ -314,14 +382,316 @@
             { id: 'getting-started', name: 'Getting Started', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>' },
             { id: 'usage', name: 'Usage', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>' },
             { id: 'styling', name: 'Styling', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>' },
-            { id: 'examples', name: 'Examples', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>' }
+            { id: 'examples', name: 'Icons', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>' }
         ];
 
         let currentMode = 'classes';
         let currentVersion = '5.3';
         let currentCategory = 'breakpoints';
         let currentIconLibrary = 'bootstrap';
+        let currentFontAwesomeVersion = (iconsData.fontawesome && iconsData.fontawesome.defaultVersion) ? iconsData.fontawesome.defaultVersion : '6';
         let searchQuery = '';
+        let iconExampleLimit = 200;
+        const iconExampleStep = 200;
+        let loadMoreObserver = null;
+        let autoLoadInProgress = false;
+        let fa4IconsLoaded = false;
+        let fa4IconsLoading = false;
+        const fa4IconsSource = 'https://gist.githubusercontent.com/zwinnie/3ed8e7970240962bc29227533c3ae047/raw/da69f87c399284440487004e78004dd8c6735bff/font-awesome-4.7.0.json';
+        let fa5IconsLoaded = false;
+        let fa5IconsLoading = false;
+        const fa5IconsVersion = '5.15.4';
+        const fa5IconsEndpoint = 'https://api.fontawesome.com';
+        let fa6IconsLoaded = false;
+        let fa6IconsLoading = false;
+        const fa6IconsVersion = '6.x';
+        let fa7IconsLoaded = false;
+        let fa7IconsLoading = false;
+        const fa7IconsVersion = '7.x';
+        let fa6ChunkInitialized = false;
+
+        function getCurrentIconLibraryData() {
+            const libraryData = iconsData[currentIconLibrary];
+            if (!libraryData) return null;
+            if (currentIconLibrary === 'fontawesome' && libraryData.versions) {
+                const versionKey = currentFontAwesomeVersion || libraryData.defaultVersion;
+                return libraryData.versions[versionKey] || libraryData.versions[libraryData.defaultVersion];
+            }
+            return libraryData;
+        }
+
+        function updateFontAwesomeVersionSelectorVisibility() {
+            const faVersionContainer = document.getElementById('fa-version-selector-container');
+            if (currentMode === 'icons' && currentIconLibrary === 'fontawesome') {
+                faVersionContainer.classList.remove('hidden');
+            } else {
+                faVersionContainer.classList.add('hidden');
+            }
+        }
+
+        function renderFontAwesomeVersionSelector() {
+            document.querySelectorAll('.fa-version-btn').forEach(b => {
+                b.className = 'fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-slate-700 hover:bg-white/70';
+            });
+            const activeBtn = document.querySelector(`.fa-version-btn[data-fa-version="${currentFontAwesomeVersion}"]`);
+            if (activeBtn) {
+                const theme = fontAwesomeVersionColors[currentFontAwesomeVersion] || fontAwesomeVersionColors['6'];
+                activeBtn.className = `fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-white shadow-md scale-105 ${theme.badge} ring-4 ${theme.ring}`;
+            }
+
+            const dot = document.getElementById('fa-version-dot');
+            const label = document.getElementById('fa-version-label');
+            const dotTheme = fontAwesomeVersionColors[currentFontAwesomeVersion] || fontAwesomeVersionColors['6'];
+            if (dot) dot.className = `inline-flex h-2 w-2 rounded-full ${dotTheme.dot}`;
+            if (label) label.textContent = `FA${currentFontAwesomeVersion}`;
+        }
+
+        function updateFontAwesomeStylesheet() {
+            const fa4Link = document.getElementById('fa4-stylesheet');
+            const fa5Link = document.getElementById('fa5-stylesheet');
+            const needsFa4 = currentMode === 'icons' && currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '4';
+            const needsFa5 = currentMode === 'icons' && currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '5';
+
+            if (needsFa4 && !fa4Link) {
+                const link = document.createElement('link');
+                link.id = 'fa4-stylesheet';
+                link.rel = 'stylesheet';
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';
+                document.head.appendChild(link);
+            } else if (!needsFa4 && fa4Link) {
+                fa4Link.remove();
+            }
+
+            if (needsFa5 && !fa5Link) {
+                const link = document.createElement('link');
+                link.id = 'fa5-stylesheet';
+                link.rel = 'stylesheet';
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+                document.head.appendChild(link);
+            } else if (!needsFa5 && fa5Link) {
+                fa5Link.remove();
+            }
+        }
+
+        function formatFa4Name(className) {
+            const raw = className.replace(/^fa-/, '');
+            return raw.split('-').map(part => part ? part[0].toUpperCase() + part.slice(1) : part).join(' ');
+        }
+
+        async function loadFontAwesome4Icons() {
+            if (fa4IconsLoaded || fa4IconsLoading) return;
+            fa4IconsLoading = true;
+            try {
+                const response = await fetch(fa4IconsSource);
+                if (!response.ok) throw new Error(`Failed to fetch FA4 icons: ${response.status}`);
+                const data = await response.json();
+                const icons = Array.isArray(data['4.7.0']) ? data['4.7.0'] : [];
+                const uniqueIcons = Array.from(new Set(icons)).sort();
+                const items = uniqueIcons.map((className) => ({
+                    name: formatFa4Name(className),
+                    code: `<i class="fa ${className}"></i>`,
+                    icon: `fa ${className}`,
+                    description: className
+                }));
+                if (iconsData.fontawesome?.versions?.['4']?.categories?.examples) {
+                    iconsData.fontawesome.versions['4'].categories.examples.items = items;
+                }
+                fa4IconsLoaded = true;
+            } catch (error) {
+                console.warn('Failed to load Font Awesome 4 icons list.', error);
+            } finally {
+                fa4IconsLoading = false;
+            }
+        }
+
+        function formatFa5StyleLabel(style) {
+            if (!style) return '';
+            return style.charAt(0).toUpperCase() + style.slice(1);
+        }
+
+        function startFontAwesomeChunkedBuild(versionKey, icons) {
+            const category = iconsData.fontawesome?.versions?.[versionKey]?.categories?.examples;
+            if (!category) return;
+
+            category.items = [];
+            category._rawIcons = icons;
+            category._rawIndex = 0;
+            category._itemsReady = false;
+            category._itemsLoading = true;
+            category._hasRenderedOnce = false;
+
+            const batchSize = 200;
+
+            const buildBatch = () => {
+                const start = category._rawIndex;
+                const end = Math.min(start + batchSize, category._rawIcons.length);
+
+                for (let i = start; i < end; i += 1) {
+                    const icon = category._rawIcons[i];
+                    const styles = icon?.familyStylesByLicense?.free || [];
+                    styles.forEach((style) => {
+                        const prefix = style?.prefix;
+                        if (!prefix) return;
+                        const styleLabel = formatFa5StyleLabel(style?.style);
+                        const displayName = styleLabel ? `${icon.label} (${styleLabel})` : icon.label;
+                        const className = `${prefix} fa-${icon.id}`;
+                        category.items.push({
+                            name: displayName,
+                            code: `<i class="${className}"></i>`,
+                            icon: className,
+                            description: icon.id
+                        });
+                    });
+                }
+
+                category._rawIndex = end;
+
+                if (currentMode === 'icons' && currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === versionKey && currentCategory === 'examples') {
+                    if (!category._hasRenderedOnce && category.items.length > 0) {
+                        category._hasRenderedOnce = true;
+                        renderContent();
+                    }
+                }
+
+                if (category._rawIndex < category._rawIcons.length) {
+                    setTimeout(buildBatch, 0);
+                } else {
+                    category._itemsReady = true;
+                    category._itemsLoading = false;
+                    if (versionKey === '7') {
+                        fa7IconsLoaded = true;
+                        fa7IconsLoading = false;
+                    }
+                    if (versionKey === '6') {
+                        fa6IconsLoaded = true;
+                        fa6IconsLoading = false;
+                    }
+                    if (versionKey === '5') {
+                        fa5IconsLoaded = true;
+                        fa5IconsLoading = false;
+                    }
+                    if (currentMode === 'icons' && currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === versionKey && currentCategory === 'examples') {
+                        renderContent();
+                    }
+                }
+            };
+
+            buildBatch();
+        }
+
+        async function loadFontAwesome5Icons() {
+            if (fa5IconsLoaded || fa5IconsLoading) return;
+            fa5IconsLoading = true;
+            try {
+                const query = `
+                    query Icons($version: String!, $license: String!) {
+                        release(version: $version) {
+                            icons(license: $license) {
+                                id
+                                label
+                                familyStylesByLicense {
+                                    free {
+                                        prefix
+                                        style
+                                    }
+                                }
+                            }
+                        }
+                    }
+                `;
+                const response = await fetch(fa5IconsEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query,
+                        variables: { version: fa5IconsVersion, license: 'free' }
+                    })
+                });
+                if (!response.ok) throw new Error(`Failed to fetch FA5 icons: ${response.status}`);
+                const payload = await response.json();
+                const icons = payload?.data?.release?.icons || [];
+                startFontAwesomeChunkedBuild('5', icons);
+            } catch (error) {
+                console.warn('Failed to load Font Awesome 5 icons list.', error);
+                fa5IconsLoading = false;
+            }
+        }
+
+        async function loadFontAwesome6Icons() {
+            if (fa6IconsLoaded || fa6IconsLoading) return;
+            fa6IconsLoading = true;
+            try {
+                const query = `
+                    query Icons($version: String!, $license: String!) {
+                        release(version: $version) {
+                            icons(license: $license) {
+                                id
+                                label
+                                familyStylesByLicense {
+                                    free {
+                                        prefix
+                                        style
+                                    }
+                                }
+                            }
+                        }
+                    }
+                `;
+                const response = await fetch(fa5IconsEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query,
+                        variables: { version: fa6IconsVersion, license: 'free' }
+                    })
+                });
+                if (!response.ok) throw new Error(`Failed to fetch FA6 icons: ${response.status}`);
+                const payload = await response.json();
+                const icons = payload?.data?.release?.icons || [];
+                startFontAwesomeChunkedBuild('6', icons);
+            } catch (error) {
+                console.warn('Failed to load Font Awesome 6 icons list.', error);
+                fa6IconsLoading = false;
+            }
+        }
+
+        async function loadFontAwesome7Icons() {
+            if (fa7IconsLoaded || fa7IconsLoading) return;
+            fa7IconsLoading = true;
+            try {
+                const query = `
+                    query Icons($version: String!, $license: String!) {
+                        release(version: $version) {
+                            icons(license: $license) {
+                                id
+                                label
+                                familyStylesByLicense {
+                                    free {
+                                        prefix
+                                        style
+                                    }
+                                }
+                            }
+                        }
+                    }
+                `;
+                const response = await fetch(fa5IconsEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query,
+                        variables: { version: fa7IconsVersion, license: 'free' }
+                    })
+                });
+                if (!response.ok) throw new Error(`Failed to fetch FA7 icons: ${response.status}`);
+                const payload = await response.json();
+                const icons = payload?.data?.release?.icons || [];
+                startFontAwesomeChunkedBuild('7', icons);
+            } catch (error) {
+                console.warn('Failed to load Font Awesome 7 icons list.', error);
+                fa7IconsLoading = false;
+            }
+        }
 
         // Render sidebar categories based on current mode
         function renderSidebar() {
@@ -417,7 +787,59 @@
             const cdnCode = document.getElementById('cdn-code');
 
             if (currentMode === 'icons') {
-                const libraryData = iconsData[currentIconLibrary];
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '7' && currentCategory === 'examples' && !fa7IconsLoaded) {
+                    if (!fa7IconsLoading) {
+                        loadFontAwesome7Icons();
+                    }
+                    const fa7Category = iconsData.fontawesome?.versions?.['7']?.categories?.examples;
+                    if (!fa7Category || !fa7Category.items || fa7Category.items.length === 0) {
+                        container.innerHTML = `
+                            <div class="text-center py-12 text-slate-500">
+                                <p>Loading Font Awesome 7 icons…</p>
+                            </div>
+                        `;
+                        return;
+                    }
+                }
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '6' && currentCategory === 'examples' && !fa6IconsLoaded) {
+                    if (!fa6IconsLoading) {
+                        loadFontAwesome6Icons();
+                    }
+                    const fa6Category = iconsData.fontawesome?.versions?.['6']?.categories?.examples;
+                    if (!fa6Category || !fa6Category.items || fa6Category.items.length === 0) {
+                        container.innerHTML = `
+                            <div class="text-center py-12 text-slate-500">
+                                <p>Loading Font Awesome 6 icons…</p>
+                            </div>
+                        `;
+                        return;
+                    }
+                }
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '5' && currentCategory === 'examples' && !fa5IconsLoaded) {
+                    container.innerHTML = `
+                        <div class="text-center py-12 text-slate-500">
+                            <p>Loading Font Awesome 5 icons…</p>
+                        </div>
+                    `;
+                    if (!fa5IconsLoading) {
+                        loadFontAwesome5Icons();
+                    }
+                    return;
+                }
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '4' && currentCategory === 'examples' && !fa4IconsLoaded) {
+                    container.innerHTML = `
+                        <div class="text-center py-12 text-slate-500">
+                            <p>Loading Font Awesome 4 icons…</p>
+                        </div>
+                    `;
+                    loadFontAwesome4Icons().then(() => {
+                        if (currentMode === 'icons' && currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '4' && currentCategory === 'examples') {
+                            renderContent();
+                        }
+                    });
+                    return;
+                }
+                const libraryData = getCurrentIconLibraryData();
                 content = libraryData.categories[currentCategory] || libraryData.categories['getting-started'];
                 // Show count for Examples category
                 if (currentCategory === 'examples') {
@@ -426,8 +848,14 @@
                     document.getElementById('content-title').textContent = content.title;
                 }
                 const libraryColor = iconLibraryColors[currentIconLibrary];
-                versionBadge.textContent = libraryData.name;
-                versionBadge.className = `px-4 py-1.5 ${libraryColor} text-white text-sm font-medium rounded-full`;
+                if (currentIconLibrary === 'fontawesome') {
+                    const faTheme = fontAwesomeVersionColors[currentFontAwesomeVersion] || fontAwesomeVersionColors['6'];
+                    versionBadge.textContent = libraryData.name;
+                    versionBadge.className = `px-4 py-1.5 ${faTheme.badge} text-white text-sm font-medium rounded-full`;
+                } else {
+                    versionBadge.textContent = libraryData.name;
+                    versionBadge.className = `px-4 py-1.5 ${libraryColor} text-white text-sm font-medium rounded-full`;
+                }
                 cdnVersionSpan.textContent = libraryData.name;
                 cdnCode.textContent = libraryData.cdnLink;
             } else {
@@ -519,8 +947,18 @@
 
             // Special rendering for icon examples
             if (currentMode === 'icons' && currentCategory === 'examples') {
-                // Sort icons alphabetically by name
-                const sortedItems = [...content.items].sort((a, b) => a.name.localeCompare(b.name));
+                // Sort icons alphabetically by name unless we're streaming Font Awesome data
+                let sortedItems;
+                const isStreamingFa = currentIconLibrary === 'fontawesome'
+                    && (currentFontAwesomeVersion === '7' || currentFontAwesomeVersion === '6' || currentFontAwesomeVersion === '5')
+                    && (fa7IconsLoading || fa6IconsLoading || fa5IconsLoading);
+                if (isStreamingFa) {
+                    sortedItems = content.items;
+                } else {
+                    sortedItems = [...content.items].sort((a, b) => a.name.localeCompare(b.name));
+                }
+                const isLimited = sortedItems.length > iconExampleLimit;
+                const displayItems = isLimited ? sortedItems.slice(0, iconExampleLimit) : sortedItems;
                 const libraryColor = iconLibraryColors[currentIconLibrary];
                 const hoverColor = {
                     'bootstrap': 'hover:border-pink-200',
@@ -552,8 +990,18 @@
                 }
 
                 container.innerHTML = `
+                    ${currentIconLibrary === 'fontawesome' && (currentFontAwesomeVersion === '7' && !fa7IconsLoaded) ? `
+                    <div class="mb-4 rounded-lg border border-indigo-100 bg-indigo-50 px-4 py-3 text-sm text-indigo-700">
+                        Loading more Font Awesome 7 icons in the background…
+                    </div>
+                    ` : ''}
+                    ${currentIconLibrary === 'fontawesome' && (currentFontAwesomeVersion === '6' && !fa6IconsLoaded) ? `
+                    <div class="mb-4 rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+                        Loading more Font Awesome 6 icons in the background…
+                    </div>
+                    ` : ''}
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                        ${sortedItems.map((item, index) => `
+                        ${displayItems.map((item, index) => `
                             <div class="border-2 border-slate-100 rounded-lg p-4 ${hoverColor} hover:shadow-md transition-all animate-slide-in text-center flex flex-col h-full">
                                 <div class="text-4xl mb-3 text-slate-700">
                                     ${renderIconPreview(item)}
@@ -566,6 +1014,15 @@
                             </div>
                         `).join('')}
                     </div>
+                    ${isLimited ? `
+                    <div class="mt-6 flex flex-col items-center justify-center text-center gap-2">
+                        <button id="load-more-icons" class="load-more-btn px-4 py-2 rounded-lg text-sm font-semibold transition-colors inline-flex items-center gap-2">
+                            <span class="load-more-spinner" aria-hidden="true"></span>
+                            <span class="load-more-text">Loading next batch…</span>
+                        </button>
+                        <div class="load-more-hint">We add 200 icons at a time to keep things fast.</div>
+                    </div>
+                    ` : ''}
                 `;
 
                 // Initialize Feather icons if needed
@@ -585,6 +1042,21 @@
                         copyToClipboard(code, this);
                     });
                 });
+
+                const loadMoreBtn = document.getElementById('load-more-icons');
+                if (loadMoreBtn) {
+                    loadMoreBtn.addEventListener('click', () => {
+                        if (autoLoadInProgress) return;
+                        autoLoadInProgress = true;
+                        iconExampleLimit += iconExampleStep;
+                        renderContent();
+                    });
+                    setupAutoLoadMore(loadMoreBtn, () => {
+                        iconExampleLimit += iconExampleStep;
+                        renderContent();
+                    });
+                }
+                autoLoadInProgress = false;
                 return;
             } else {
                 // Check if items have sections for grouping
@@ -763,7 +1235,59 @@
 
             if (currentMode === 'icons' && currentCategory === 'examples') {
                 // When on Examples category, only search within examples (icon names and descriptions)
-                const libraryData = iconsData[currentIconLibrary];
+                const libraryData = getCurrentIconLibraryData();
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '7' && !fa7IconsLoaded) {
+                    loadFontAwesome7Icons().then(() => {
+                        if (searchQuery.length > 0) {
+                            const updatedResults = performSearch(searchQuery);
+                            if (currentMode === 'icons' && currentCategory === 'examples') {
+                                renderFilteredExamples(updatedResults);
+                            } else {
+                                renderSearchResults(updatedResults);
+                            }
+                        }
+                    });
+                    return results;
+                }
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '6' && !fa6IconsLoaded) {
+                    loadFontAwesome6Icons().then(() => {
+                        if (searchQuery.length > 0) {
+                            const updatedResults = performSearch(searchQuery);
+                            if (currentMode === 'icons' && currentCategory === 'examples') {
+                                renderFilteredExamples(updatedResults);
+                            } else {
+                                renderSearchResults(updatedResults);
+                            }
+                        }
+                    });
+                    return results;
+                }
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '5' && !fa5IconsLoaded) {
+                    loadFontAwesome5Icons().then(() => {
+                        if (searchQuery.length > 0) {
+                            const updatedResults = performSearch(searchQuery);
+                            if (currentMode === 'icons' && currentCategory === 'examples') {
+                                renderFilteredExamples(updatedResults);
+                            } else {
+                                renderSearchResults(updatedResults);
+                            }
+                        }
+                    });
+                    return results;
+                }
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '4' && !fa4IconsLoaded) {
+                    loadFontAwesome4Icons().then(() => {
+                        if (searchQuery.length > 0) {
+                            const updatedResults = performSearch(searchQuery);
+                            if (currentMode === 'icons' && currentCategory === 'examples') {
+                                renderFilteredExamples(updatedResults);
+                            } else {
+                                renderSearchResults(updatedResults);
+                            }
+                        }
+                    });
+                    return results;
+                }
                 const examplesCategory = libraryData.categories['examples'];
                 examplesCategory.items.forEach(item => {
                     if (item.name.toLowerCase().includes(lowerQuery) ||
@@ -773,7 +1297,7 @@
                 });
             } else if (currentMode === 'icons') {
                 // Search through all iconsData categories for current library
-                const libraryData = iconsData[currentIconLibrary];
+                const libraryData = getCurrentIconLibraryData();
                 Object.entries(libraryData.categories).forEach(([categoryId, category]) => {
                     category.items.forEach(item => {
                         if (item.name.toLowerCase().includes(lowerQuery) ||
@@ -867,10 +1391,10 @@
         // Render filtered examples (when searching within Examples category)
         function renderFilteredExamples(results) {
             const container = document.getElementById('content-container');
-            const libraryData = iconsData[currentIconLibrary];
+            const libraryData = getCurrentIconLibraryData();
             document.getElementById('content-title').textContent = results.length === libraryData.categories['examples'].items.length
-                ? 'Examples'
-                : `Examples (${results.length} found)`;
+                ? 'Icons'
+                : `Icons (${results.length} found)`;
 
             if (results.length === 0) {
                 container.innerHTML = `
@@ -881,8 +1405,26 @@
                 return;
             }
 
+            if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '7' && !fa7IconsLoaded) {
+                container.insertAdjacentHTML('afterbegin', `
+                    <div class="mb-4 rounded-lg border border-indigo-100 bg-indigo-50 px-4 py-3 text-sm text-indigo-700">
+                        Loading more Font Awesome 7 icons in the background…
+                    </div>
+                `);
+            }
+
+            if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '6' && !fa6IconsLoaded) {
+                container.insertAdjacentHTML('afterbegin', `
+                    <div class="mb-4 rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+                        Loading more Font Awesome 6 icons in the background…
+                    </div>
+                `);
+            }
+
             // Sort results alphabetically by name
             const sortedResults = [...results].sort((a, b) => a.name.localeCompare(b.name));
+            const isLimited = sortedResults.length > iconExampleLimit;
+            const displayResults = isLimited ? sortedResults.slice(0, iconExampleLimit) : sortedResults;
 
             const hoverColor = {
                 'bootstrap': 'hover:border-pink-200',
@@ -915,7 +1457,7 @@
 
             container.innerHTML = `
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                    ${sortedResults.map((item, index) => `
+                    ${displayResults.map((item, index) => `
                         <div class="border-2 border-slate-100 rounded-lg p-4 ${hoverColor} hover:shadow-md transition-all animate-slide-in text-center flex flex-col h-full">
                             <div class="text-4xl mb-3 text-slate-700">
                                 ${renderIconPreview(item)}
@@ -928,6 +1470,15 @@
                         </div>
                     `).join('')}
                 </div>
+                ${isLimited ? `
+                <div class="mt-6 flex flex-col items-center justify-center text-center gap-2">
+                        <button id="load-more-icons" class="load-more-btn px-4 py-2 rounded-lg text-sm font-semibold transition-colors inline-flex items-center gap-2">
+                            <span class="load-more-spinner" aria-hidden="true"></span>
+                            <span class="load-more-text">Loading next batch…</span>
+                        </button>
+                        <div class="load-more-hint">We add 200 icons at a time to keep things fast.</div>
+                    </div>
+                    ` : ''}
             `;
 
             // Initialize Feather icons if needed
@@ -947,6 +1498,21 @@
                     copyToClipboard(code, this);
                 });
             });
+
+            const loadMoreBtn = document.getElementById('load-more-icons');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', () => {
+                    if (autoLoadInProgress) return;
+                    autoLoadInProgress = true;
+                    iconExampleLimit += iconExampleStep;
+                    renderFilteredExamples(results);
+                });
+                setupAutoLoadMore(loadMoreBtn, () => {
+                    iconExampleLimit += iconExampleStep;
+                    renderFilteredExamples(results);
+                });
+            }
+            autoLoadInProgress = false;
         }
 
         // Clear search helper
@@ -956,11 +1522,53 @@
             if (searchInput) searchInput.value = '';
         }
 
+        function setupAutoLoadMore(target, onLoadMore) {
+            if (loadMoreObserver) {
+                loadMoreObserver.disconnect();
+                loadMoreObserver = null;
+            }
+
+            const triggerLoadMore = () => {
+                if (autoLoadInProgress) return;
+                autoLoadInProgress = true;
+                if (target) {
+                    target.classList.add('loading');
+                    const text = target.querySelector('.load-more-text');
+                    if (text) text.textContent = 'Loading next batch…';
+                }
+                setTimeout(() => {
+                    onLoadMore();
+                }, 1000);
+            };
+
+            if ('IntersectionObserver' in window) {
+                loadMoreObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            triggerLoadMore();
+                        }
+                    });
+                }, { root: null, rootMargin: '200px 0px', threshold: 0.01 });
+                loadMoreObserver.observe(target);
+            } else {
+                const handler = () => {
+                    const rect = target.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight + 200) {
+                        window.removeEventListener('scroll', handler);
+                        triggerLoadMore();
+                    }
+                };
+                window.addEventListener('scroll', handler, { passive: true });
+                handler();
+            }
+        }
+
         // Attach category button listeners
         function attachCategoryListeners() {
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     currentCategory = btn.dataset.category;
+                    iconExampleLimit = 200;
                     clearSearch();
                     renderSidebar();
                     renderContent();
@@ -977,6 +1585,7 @@
         document.querySelectorAll('.mode-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 currentMode = btn.dataset.mode;
+                iconExampleLimit = 200;
                 clearSearch();
 
                 // Update mode button styles
@@ -996,10 +1605,14 @@
                 } else {
                     versionContainer.classList.remove('hidden');
                     iconLibraryContainer.classList.add('hidden');
+                    document.getElementById('fa-version-selector-container').classList.add('hidden');
                     currentCategory = 'breakpoints';
                     expandedCategories['layout'] = true;
                 }
 
+                updateFontAwesomeVersionSelectorVisibility();
+                renderFontAwesomeVersionSelector();
+                updateFontAwesomeStylesheet();
                 renderSidebar();
                 renderContent();
             });
@@ -1009,6 +1622,7 @@
         document.querySelectorAll('.version-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 currentVersion = btn.dataset.version;
+                iconExampleLimit = 200;
                 clearSearch();
                 document.querySelectorAll('.version-btn').forEach(b => {
                     b.className = 'version-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300';
@@ -1024,12 +1638,64 @@
         document.querySelectorAll('.library-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 currentIconLibrary = btn.dataset.library;
+                iconExampleLimit = 200;
                 clearSearch();
                 document.querySelectorAll('.library-btn').forEach(b => {
                     b.className = 'library-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300';
                 });
                 const color = iconLibraryColors[currentIconLibrary];
                 btn.className = `library-btn p-4 rounded-xl border-2 transition-all font-medium ${color} text-white border-transparent shadow-lg scale-105`;
+                if (currentIconLibrary === 'fontawesome') {
+                    currentFontAwesomeVersion = (iconsData.fontawesome && iconsData.fontawesome.defaultVersion) ? iconsData.fontawesome.defaultVersion : '6';
+                }
+                updateFontAwesomeVersionSelectorVisibility();
+                renderFontAwesomeVersionSelector();
+                updateFontAwesomeStylesheet();
+                renderSidebar();
+                renderContent();
+            });
+        });
+
+        // Font Awesome version selector
+        document.querySelectorAll('.fa-version-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentFontAwesomeVersion = btn.dataset.faVersion;
+                iconExampleLimit = 200;
+                clearSearch();
+                renderFontAwesomeVersionSelector();
+                updateFontAwesomeStylesheet();
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '7') {
+                    loadFontAwesome7Icons().then(() => {
+                        if (currentMode === 'icons' && currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '7') {
+                            renderSidebar();
+                            renderContent();
+                        }
+                    });
+                }
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '6') {
+                    loadFontAwesome6Icons().then(() => {
+                        if (currentMode === 'icons' && currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '6') {
+                            renderSidebar();
+                            renderContent();
+                        }
+                    });
+                }
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '5') {
+                    loadFontAwesome5Icons().then(() => {
+                        if (currentMode === 'icons' && currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '5') {
+                            renderSidebar();
+                            renderContent();
+                        }
+                    });
+                }
+                if (currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '4') {
+                    loadFontAwesome4Icons().then(() => {
+                        if (currentMode === 'icons' && currentIconLibrary === 'fontawesome' && currentFontAwesomeVersion === '4') {
+                            renderSidebar();
+                            renderContent();
+                        }
+                    });
+                }
                 renderSidebar();
                 renderContent();
             });
@@ -1100,7 +1766,10 @@
                         // Check in icons data
                         if (!foundInClasses) {
                             for (const lib of Object.keys(iconsData)) {
-                                if (iconsData[lib].categories[category]) {
+                                const libData = lib === 'fontawesome' && iconsData[lib].versions
+                                    ? iconsData[lib].versions[currentFontAwesomeVersion] || iconsData[lib].versions[iconsData[lib].defaultVersion]
+                                    : iconsData[lib];
+                                if (libData && libData.categories && libData.categories[category]) {
                                     foundInIcons = true;
                                     currentMode = 'icons';
                                     currentIconLibrary = lib;
@@ -1133,6 +1802,9 @@
                                 iconLibraryContainer.classList.add('hidden');
                             }
 
+                            updateFontAwesomeVersionSelectorVisibility();
+                            renderFontAwesomeVersionSelector();
+                            updateFontAwesomeStylesheet();
                             renderSidebar();
                             renderContent();
                         }
@@ -1173,7 +1845,10 @@
 
                     // Check in icons data
                     for (const lib of Object.keys(iconsData)) {
-                        if (iconsData[lib].categories[category]) {
+                        const libData = lib === 'fontawesome' && iconsData[lib].versions
+                            ? iconsData[lib].versions[currentFontAwesomeVersion] || iconsData[lib].versions[iconsData[lib].defaultVersion]
+                            : iconsData[lib];
+                        if (libData && libData.categories && libData.categories[category]) {
                             currentMode = 'icons';
                             currentIconLibrary = lib;
                             currentCategory = category;
@@ -1210,10 +1885,16 @@
                 versionContainer.classList.remove('hidden');
                 iconLibraryContainer.classList.add('hidden');
             }
+            updateFontAwesomeVersionSelectorVisibility();
+            renderFontAwesomeVersionSelector();
+            updateFontAwesomeStylesheet();
         }
 
         // Initial render
         renderSidebar();
+        updateFontAwesomeVersionSelectorVisibility();
+        renderFontAwesomeVersionSelector();
+        updateFontAwesomeStylesheet();
         renderContent();
 
         // Scroll to section after render if we had a hash

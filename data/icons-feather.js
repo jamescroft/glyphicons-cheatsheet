@@ -29,7 +29,7 @@ const featherIcons = {
                 ]
             },
             examples: {
-                title: 'Examples',
+                title: 'Icons',
                 items: [
                     { name: 'Heart', code: '<i data-feather="heart"></i>', icon: 'heart', description: 'Love, favorite, like' },
                     { name: 'Star', code: '<i data-feather="star"></i>', icon: 'star', description: 'Rating, favorite, featured' },

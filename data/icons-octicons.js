@@ -28,7 +28,7 @@ const octiconsIcons = {
                 ]
             },
             examples: {
-                title: 'Examples',
+                title: 'Icons',
                 items: [
                     { name: 'Heart', code: '<svg class="octicon octicon-heart">...</svg>', icon: 'heart', description: 'Love, favorite, like' },
                     { name: 'Star', code: '<svg class="octicon octicon-star">...</svg>', icon: 'star', description: 'Rating, favorite, featured' },

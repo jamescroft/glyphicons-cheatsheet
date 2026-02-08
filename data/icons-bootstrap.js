@@ -28,7 +28,7 @@ const bootstrapIcons = {
                 ]
             },
             examples: {
-                title: 'Examples',
+                title: 'Icons',
                 items: [
                     { name: 'Heart', code: '<i class="bi bi-heart-fill"></i>', icon: 'bi-heart-fill', description: 'Love, favorite, like' },
                     { name: 'Star', code: '<i class="bi bi-star-fill"></i>', icon: 'bi-star-fill', description: 'Rating, bookmark, featured' },
