@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Libraries Cheat Sheet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/shared.css">
+    <link rel="stylesheet" href="assets/icons.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900">Icon Libraries</h1>
+                        <p class="text-sm text-slate-500">Browse popular icon packs</p>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="lg:hidden p-2">
+                    <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-6">
+            <div class="inline-flex rounded-xl bg-slate-100 p-1">
+                <a href="index.html" class="px-6 py-2.5 rounded-lg font-medium transition-all text-slate-600 hover:text-slate-900">
+                    Bootstrap Classes
+                </a>
+                <a href="icons.html" class="px-6 py-2.5 rounded-lg font-medium transition-all bg-pink-600 text-white shadow-md">
+                    Icon Libraries
+                </a>
+            </div>
+        </div>
+
+        <div id="icon-library-selector-container" class="mb-8">
+            <label class="block text-sm font-medium text-slate-700 mb-3">Select Icon Library</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="icon-library-selector">
+                <button data-library="bootstrap" class="library-btn p-4 rounded-xl border-2 transition-all font-medium bg-pink-600 text-white border-transparent shadow-lg scale-105">
+                    Bootstrap Icons
+                </button>
+                <button data-library="fontawesome" class="library-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300">
+                    Font Awesome
+                </button>
+                <button data-library="feather" class="library-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300">
+                    Feather
+                </button>
+                <button data-library="octicons" class="library-btn p-4 rounded-xl border-2 transition-all font-medium bg-white text-slate-700 border-slate-200 hover:border-slate-300">
+                    Octicons
+                </button>
+            </div>
+        </div>
+
+        <div id="fa-version-selector-container" class="mb-8 hidden">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-800">Font Awesome Version</label>
+                    <p class="text-xs text-slate-500">Select a version to see specific guidance and examples.</p>
+                </div>
+                <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm">
+                    <span class="inline-flex h-2 w-2 rounded-full bg-blue-500" id="fa-version-dot"></span>
+                    <span id="fa-version-label">FA6</span>
+                </div>
+            </div>
+            <div class="mt-4 p-1 rounded-2xl bg-gradient-to-r from-slate-100 via-white to-slate-100 border border-slate-200">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-1" id="fa-version-selector">
+                    <button data-fa-version="7" class="fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-slate-700 hover:bg-white/70">
+                        FA7
+                    </button>
+                    <button data-fa-version="6" class="fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-slate-700 hover:bg-white/70">
+                        FA6
+                    </button>
+                    <button data-fa-version="5" class="fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-slate-700 hover:bg-white/70">
+                        FA5
+                    </button>
+                    <button data-fa-version="4" class="fa-version-btn px-4 py-2.5 rounded-xl transition-all text-sm font-semibold text-slate-700 hover:bg-white/70">
+                        FA4
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <div class="relative">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search icons, keywords..."
+                    class="w-full pl-12 pr-4 py-3 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-pink-500 bg-white"
+                />
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-4 gap-8">
+            <div id="sidebar" class="hidden lg:block">
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <h3 class="font-semibold text-slate-900 mb-4">Categories</h3>
+                    <nav class="space-y-1" id="category-nav"></nav>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3">
+                <div class="bg-white rounded-xl shadow-sm p-6 sm:p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 id="content-title" class="text-3xl font-bold text-slate-900">Getting Started</h2>
+                        <span id="version-badge" class="px-4 py-1.5 bg-pink-600 text-white text-sm font-medium rounded-full">
+                            Bootstrap Icons
+                        </span>
+                    </div>
+
+                    <div id="content-container" class="space-y-4"></div>
+                </div>
+
+                <div class="mt-6 bg-gradient-to-r from-pink-50 to-blue-50 rounded-xl p-6 border-2 border-pink-100">
+                    <h3 class="font-semibold text-slate-900 mb-3">CDN Quick Reference</h3>
+                    <p class="text-sm text-slate-600 mb-3">Add <span id="cdn-version">Bootstrap Icons</span> to your project:</p>
+                    <pre class="bg-white p-4 rounded-lg overflow-x-auto border border-pink-200"><code id="cdn-code" class="text-sm text-slate-800"></code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data/icons-bootstrap.js"></script>
+    <script src="data/icons-fontawesome.js"></script>
+    <script src="data/icons-feather.js"></script>
+    <script src="data/icons-octicons.js"></script>
+    <script src="assets/shared.js"></script>
+    <script src="assets/icons.js"></script>
+</body>
+</html>
