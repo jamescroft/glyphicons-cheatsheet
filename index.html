@@ -223,89 +223,161 @@
             'octicons': 'bg-slate-700'
         };
 
-        // Sidebar category definitions
-        const classesCategories = [
-            {
-                id: 'layout',
-                name: 'Layout',
-                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>',
-                isParent: true,
-                children: [
-                    { id: 'breakpoints', name: 'Breakpoints' },
-                    { id: 'containers', name: 'Containers' },
-                    { id: 'grid', name: 'Grid' },
-                    { id: 'columns', name: 'Columns' },
-                    { id: 'gutters', name: 'Gutters' },
-                    { id: 'layout-utilities', name: 'Utilities' },
-                    { id: 'z-index', name: 'Z-index' },
-                    { id: 'css-grid', name: 'CSS Grid' }
-                ]
-            },
-{
-                id: 'content',
-                name: 'Content',
-                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>',
-                isParent: true,
-                children: [
-                    { id: 'reboot', name: 'Reboot' },
-                    { id: 'typography', name: 'Typography' },
-                    { id: 'images', name: 'Images' },
-                    { id: 'tables', name: 'Tables' },
-                    { id: 'figures', name: 'Figures' }
-                ]
-            },
-            {
-                id: 'forms',
-                name: 'Forms',
-                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>',
-                isParent: true,
-                children: [
-                    { id: 'form-control', name: 'Form control' },
-                    { id: 'select', name: 'Select' },
-                    { id: 'checks-radios', name: 'Checks & radios' },
-                    { id: 'range', name: 'Range' },
-                    { id: 'input-group', name: 'Input group' },
-                    { id: 'floating-labels', name: 'Floating labels' },
-                    { id: 'form-layout', name: 'Layout' },
-                    { id: 'validation', name: 'Validation' }
-                ]
-            },
-            {
-                id: 'components',
-                name: 'Components',
-                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z"></path>',
-                isParent: true,
-                children: [
-                    { id: 'accordion', name: 'Accordion' },
-                    { id: 'alerts', name: 'Alerts' },
-                    { id: 'badge', name: 'Badge' },
-                    { id: 'breadcrumb', name: 'Breadcrumb' },
-                    { id: 'buttons', name: 'Buttons' },
-                    { id: 'button-group', name: 'Button group' },
-                    { id: 'card', name: 'Card' },
-                    { id: 'carousel', name: 'Carousel' },
-                    { id: 'close-button', name: 'Close button' },
-                    { id: 'collapse', name: 'Collapse' },
-                    { id: 'dropdowns', name: 'Dropdowns' },
-                    { id: 'list-group', name: 'List group' },
-                    { id: 'modal', name: 'Modal' },
-                    { id: 'navbar', name: 'Navbar' },
-                    { id: 'navs-tabs', name: 'Navs & tabs' },
-                    { id: 'offcanvas', name: 'Offcanvas' },
-                    { id: 'pagination', name: 'Pagination' },
-                    { id: 'placeholders', name: 'Placeholders' },
-                    { id: 'popovers', name: 'Popovers' },
-                    { id: 'progress', name: 'Progress' },
-                    { id: 'scrollspy', name: 'Scrollspy' },
-                    { id: 'spinners', name: 'Spinners' },
-                    { id: 'toasts', name: 'Toasts' },
-                    { id: 'tooltips', name: 'Tooltips' }
-                ]
-            },
-            { id: 'utilities', name: 'Utilities', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>' },
-            { id: 'helpers', name: 'Helpers', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>' },
-            { id: 'javascript', name: 'JavaScript', icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>' }
-        ];
+        // Sidebar category definitions - shared icons
+        const icons = {
+            layout: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path>',
+            content: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>',
+            forms: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>',
+            components: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5z"></path>',
+            utilities: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>',
+            helpers: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>',
+            javascript: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>'
+        };
+
+        // Version-specific sidebar categories
+        const versionCategories = {
+            '5.3': [
+                {
+                    id: 'layout', name: 'Layout', icon: icons.layout, isParent: true,
+                    children: [
+                        { id: 'breakpoints', name: 'Breakpoints' },
+                        { id: 'containers', name: 'Containers' },
+                        { id: 'grid', name: 'Grid' },
+                        { id: 'columns', name: 'Columns' },
+                        { id: 'gutters', name: 'Gutters' },
+                        { id: 'layout-utilities', name: 'Utilities' },
+                        { id: 'z-index', name: 'Z-index' },
+                        { id: 'css-grid', name: 'CSS Grid' }
+                    ]
+                },
+                {
+                    id: 'content', name: 'Content', icon: icons.content, isParent: true,
+                    children: [
+                        { id: 'reboot', name: 'Reboot' },
+                        { id: 'typography', name: 'Typography' },
+                        { id: 'images', name: 'Images' },
+                        { id: 'tables', name: 'Tables' },
+                        { id: 'figures', name: 'Figures' }
+                    ]
+                },
+                {
+                    id: 'forms', name: 'Forms', icon: icons.forms, isParent: true,
+                    children: [
+                        { id: 'form-control', name: 'Form control' },
+                        { id: 'select', name: 'Select' },
+                        { id: 'checks-radios', name: 'Checks & radios' },
+                        { id: 'range', name: 'Range' },
+                        { id: 'input-group', name: 'Input group' },
+                        { id: 'floating-labels', name: 'Floating labels' },
+                        { id: 'form-layout', name: 'Layout' },
+                        { id: 'validation', name: 'Validation' }
+                    ]
+                },
+                {
+                    id: 'components', name: 'Components', icon: icons.components, isParent: true,
+                    children: [
+                        { id: 'accordion', name: 'Accordion' },
+                        { id: 'alerts', name: 'Alerts' },
+                        { id: 'badge', name: 'Badge' },
+                        { id: 'breadcrumb', name: 'Breadcrumb' },
+                        { id: 'buttons', name: 'Buttons' },
+                        { id: 'button-group', name: 'Button group' },
+                        { id: 'card', name: 'Card' },
+                        { id: 'carousel', name: 'Carousel' },
+                        { id: 'close-button', name: 'Close button' },
+                        { id: 'collapse', name: 'Collapse' },
+                        { id: 'dropdowns', name: 'Dropdowns' },
+                        { id: 'list-group', name: 'List group' },
+                        { id: 'modal', name: 'Modal' },
+                        { id: 'navbar', name: 'Navbar' },
+                        { id: 'navs-tabs', name: 'Navs & tabs' },
+                        { id: 'offcanvas', name: 'Offcanvas' },
+                        { id: 'pagination', name: 'Pagination' },
+                        { id: 'placeholders', name: 'Placeholders' },
+                        { id: 'popovers', name: 'Popovers' },
+                        { id: 'progress', name: 'Progress' },
+                        { id: 'scrollspy', name: 'Scrollspy' },
+                        { id: 'spinners', name: 'Spinners' },
+                        { id: 'toasts', name: 'Toasts' },
+                        { id: 'tooltips', name: 'Tooltips' }
+                    ]
+                },
+                { id: 'utilities', name: 'Utilities', icon: icons.utilities },
+                { id: 'helpers', name: 'Helpers', icon: icons.helpers },
+                { id: 'javascript', name: 'JavaScript', icon: icons.javascript }
+            ],
+            '4.6': [
+                {
+                    id: 'layout', name: 'Layout', icon: icons.layout, isParent: true,
+                    children: [
+                        { id: 'breakpoints', name: 'Breakpoints' },
+                        { id: 'containers', name: 'Containers' },
+                        { id: 'grid', name: 'Grid' },
+                        { id: 'columns', name: 'Columns' },
+                        { id: 'gutters', name: 'Gutters' },
+                        { id: 'layout-utilities', name: 'Utilities' },
+                        { id: 'z-index', name: 'Z-index' }
+                    ]
+                },
+                {
+                    id: 'content', name: 'Content', icon: icons.content, isParent: true,
+                    children: [
+                        { id: 'reboot', name: 'Reboot' },
+                        { id: 'typography', name: 'Typography' },
+                        { id: 'images', name: 'Images' },
+                        { id: 'tables', name: 'Tables' },
+                        { id: 'figures', name: 'Figures' }
+                    ]
+                },
+                {
+                    id: 'forms', name: 'Forms', icon: icons.forms, isParent: true,
+                    children: [
+                        { id: 'form-control', name: 'Form control' },
+                        { id: 'select', name: 'Select' },
+                        { id: 'checks-radios', name: 'Checks & radios' },
+                        { id: 'range', name: 'Range' },
+                        { id: 'input-group', name: 'Input group' },
+                        { id: 'form-layout', name: 'Layout' },
+                        { id: 'validation', name: 'Validation' }
+                    ]
+                },
+                {
+                    id: 'components', name: 'Components', icon: icons.components, isParent: true,
+                    children: [
+                        { id: 'alerts', name: 'Alerts' },
+                        { id: 'badge', name: 'Badge' },
+                        { id: 'breadcrumb', name: 'Breadcrumb' },
+                        { id: 'buttons', name: 'Buttons' },
+                        { id: 'button-group', name: 'Button group' },
+                        { id: 'card', name: 'Card' },
+                        { id: 'carousel', name: 'Carousel' },
+                        { id: 'close-button', name: 'Close button' },
+                        { id: 'collapse', name: 'Collapse' },
+                        { id: 'dropdowns', name: 'Dropdowns' },
+                        { id: 'jumbotron', name: 'Jumbotron' },
+                        { id: 'list-group', name: 'List group' },
+                        { id: 'media-object', name: 'Media object' },
+                        { id: 'modal', name: 'Modal' },
+                        { id: 'navbar', name: 'Navbar' },
+                        { id: 'navs-tabs', name: 'Navs & tabs' },
+                        { id: 'pagination', name: 'Pagination' },
+                        { id: 'popovers', name: 'Popovers' },
+                        { id: 'progress', name: 'Progress' },
+                        { id: 'scrollspy', name: 'Scrollspy' },
+                        { id: 'spinners', name: 'Spinners' },
+                        { id: 'toasts', name: 'Toasts' },
+                        { id: 'tooltips', name: 'Tooltips' }
+                    ]
+                },
+                { id: 'utilities', name: 'Utilities', icon: icons.utilities },
+                { id: 'helpers', name: 'Helpers', icon: icons.helpers }
+            ]
+        };
+
+        // Get categories for current version, fall back to 5.3
+        function getClassesCategories() {
+            return versionCategories[currentVersion] || versionCategories['5.3'];
+        }
 
         // Track expanded parent categories
         let expandedCategories = { 'layout': true, 'content': true, 'forms': true, 'components': true };
@@ -325,7 +397,7 @@
 
         // Render sidebar categories based on current mode
         function renderSidebar() {
-            const categories = currentMode === 'icons' ? iconsCategories : classesCategories;
+            const categories = currentMode === 'icons' ? iconsCategories : getClassesCategories();
             const nav = document.getElementById('category-nav');
             const activeColor = currentMode === 'icons' ? iconLibraryColors[currentIconLibrary] : versionColors[currentVersion];
 
@@ -496,7 +568,9 @@
                     'utilities': 'Utilities',
                     'helpers': 'Helpers',
                     'forms': 'Forms',
-                    'javascript': 'JavaScript'
+                    'javascript': 'JavaScript',
+                    'jumbotron': 'Jumbotron',
+                    'media-object': 'Media object'
                 };
                 document.getElementById('content-title').textContent = content?.title || categoryTitles[currentCategory] || currentCategory;
                 versionBadge.textContent = `v${currentVersion}`;
